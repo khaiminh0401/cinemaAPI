@@ -4,32 +4,28 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.dao.ToppingDao;
-import com.example.demo.service.MovieService;
 
 @RestController
-@RequestMapping("/movie")
+@RequestMapping("/topping")
 @CrossOrigin("*")
-public class MovieController implements BaseController{
+public class ToppingController implements BaseController{
 	@Autowired
-	private MovieService movieService;
+	private ToppingDao dao;
 	
 	@Override
 	@GetMapping(value= {"","/"})
 	public ResponseEntity<?> findAll() {
 		// TODO Auto-generated method stub
-		return ResponseEntity.ok(movieService.findAll());
+		return ResponseEntity.ok(dao.findAll());
 	}
 
 	@Override
-	@GetMapping("/{id}")
-	public ResponseEntity<?> findById(@PathVariable String id) {
+	public ResponseEntity<?> findById(String id) {
 		// TODO Auto-generated method stub
-		return ResponseEntity.ok(movieService.findById(id));
+		return null;
 	}
-	
 }

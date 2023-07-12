@@ -1,6 +1,7 @@
 SELECT 
 		id,
 		name,
+		actor,
 		year_of_manufacture,
 		image,
 		director,

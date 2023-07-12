@@ -21,6 +21,8 @@ public class Movie {
 	@Column
 	private String name;
 	@Column
+	private String actor;
+	@Column
 	private int year_of_manufacture;
 	@Column
 	private String image;
