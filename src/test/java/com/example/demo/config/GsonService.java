@@ -33,5 +33,25 @@ public class GsonService {
 		}
 		return null;
 	}
-	
+
+	public Object getValueExpect(String className, String methodName, Object name) {
+		FileReader fileReader;
+		String fileJson = "src/test/resources/" +
+				className.replace("class ", "").replace(".", "/") +
+				"_" + methodName + "_expect.json";
+		try {
+			fileReader = new FileReader(fileJson);
+			this.gson = new Gson();
+			return gson.fromJson(fileReader, name.getClass());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public static <T> T toObject(String json, Class<T> type) {
+		Gson gson = new Gson();
+		return gson.fromJson(json, type);
+	}
 }
