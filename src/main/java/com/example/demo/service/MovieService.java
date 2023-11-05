@@ -204,18 +204,18 @@ public class MovieService implements BaseService<Movie, String> {
 
 			// Lưu movie poster tới S3 bucket
 			s3Service.saveFile(BUCKET_NAME, key, inputStream, objectMetadata);
-			// Cập nhật movie poster 
+			// Cập nhật movie poster
 			movie.setPoster(movie.getId() + "." + extension);
 
 			ObjectMapper objectMapper = new ObjectMapper();
-	        String json;
+			String json;
 			Connection connection = dataSource.getConnection();
 			// Chuyển đổi thành java.sql.Array(tương thích với biến truyền vào ở function
 			// sql)
-			movie.setLanguage2(""+connection.createArrayOf("integer", movie.getArrayLanguage().toArray()));
-			movie.setType2(""+connection.createArrayOf("text", movie.getArrayType().toArray()));
-			movie.setActor2(""+connection.createArrayOf("text", movie.getArrayActor().toArray()));
-			movie.setDirector2(""+connection.createArrayOf("text", movie.getArrayDirector().toArray()));
+			movie.setLanguage2("" + connection.createArrayOf("integer", movie.getArrayLanguage().toArray()));
+			movie.setType2("" + connection.createArrayOf("text", movie.getArrayType().toArray()));
+			movie.setActor2("" + connection.createArrayOf("text", movie.getArrayActor().toArray()));
+			movie.setDirector2("" + connection.createArrayOf("text", movie.getArrayDirector().toArray()));
 			json = objectMapper.writeValueAsString(movie);
 			movieDao.insertmovie(json);
 			return RequestStatusEnum.SUCCESS.name();
@@ -251,25 +251,26 @@ public class MovieService implements BaseService<Movie, String> {
 			// Lưu movie poster tới S3 bucket
 			s3Service.saveFile(BUCKET_NAME, key, inputStream, objectMetadata);
 
-			// Cập nhật movie poster 
+			// Cập nhật movie poster
 			movie.setPoster(movie.getId() + "." + extension);
-			
+
 			ObjectMapper objectMapper = new ObjectMapper();
-	        String json;
+			String json;
 			Connection connection = dataSource.getConnection();
 			// Chuyển đổi thành java.sql.Array(tương thích với biến truyền vào ở function
 			// sql)
-			movie.setLanguage2(""+connection.createArrayOf("integer", movie.getArrayLanguage().toArray()));
-			movie.setType2(""+connection.createArrayOf("text", movie.getArrayType().toArray()));
-			movie.setActor2(""+connection.createArrayOf("text", movie.getArrayActor().toArray()));
-			movie.setDirector2(""+connection.createArrayOf("text", movie.getArrayDirector().toArray()));
+			movie.setLanguage2("" + connection.createArrayOf("integer", movie.getArrayLanguage().toArray()));
+			movie.setType2("" + connection.createArrayOf("text", movie.getArrayType().toArray()));
+			movie.setActor2("" + connection.createArrayOf("text", movie.getArrayActor().toArray()));
+			movie.setDirector2("" + connection.createArrayOf("text", movie.getArrayDirector().toArray()));
 			json = objectMapper.writeValueAsString(movie);
 			movieDao.updatemovie(json);
 			return RequestStatusEnum.SUCCESS.name();
 		}
 		throw new InvalidRequestParameterException("Key does not exist", RequestParameterEnum.NOT_EXISTS);
 	}
-	public Movie getByBill(int id){
+
+	public Movie getByBill(int id) {
 		return movieDao.getByBill(id);
 	}
 }
