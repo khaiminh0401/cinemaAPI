@@ -29,9 +29,9 @@ public class TokenVnpayService implements BaseService<Ticket, Integer> {
 		return Optional.empty();
 	}
 
-	public void insert(TokenVnpay tokenVnpay) throws InvalidRequestParameterException {
+	public int insert(TokenVnpay tokenVnpay) throws InvalidRequestParameterException {
 		// TODO Auto-generated method stub
-		tokenVnpayDao.insert(tokenVnpay);
+		return tokenVnpayDao.insert(tokenVnpay);
 	}
 
 	public TokenVnpay findByCustomerId(Optional<Integer> customerId) throws InvalidRequestParameterException {
