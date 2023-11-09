@@ -1,0 +1,33 @@
+{
+	"json": {
+		"id": "MP56",
+		"name": "Alibaba",
+		"yearofmanufacture": 2023,
+		"countryid": 20,
+		"time": 105,
+		"describe": "test demo",
+		"trailer": "test",
+		"status": "1",
+		"poster": "MP51.png",
+		"arrayLanguage": [
+			8,
+			16
+		],
+		"arrayType": [
+			"LP01"
+		],
+		"limitage": 16,
+		"arrayActor": [
+			1,
+			2
+		],
+		"arrayDirector": [
+			1
+		]
+	},
+	"file": {
+		"name": "MP51.jpg",
+		"type": "image/jpg",
+		"lastModified": "2023-11-08T07:43:19.000Z"
+	}
+}

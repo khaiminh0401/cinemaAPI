@@ -1,18 +1,26 @@
 package com.example.demo.controller;
 
-import com.example.demo.MovieTestApplication;
-import com.example.demo.config.GsonService;
+import static org.hamcrest.CoreMatchers.containsString;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import java.io.FileInputStream;
+
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static org.hamcrest.CoreMatchers.containsString;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-
-import org.junit.jupiter.api.Test;
+import com.example.demo.MovieTestApplication;
+import com.example.demo.config.GsonService;
+import com.github.springtestdbunit.annotation.DatabaseSetup;
+import com.github.springtestdbunit.annotation.ExpectedDatabase;
+import com.github.springtestdbunit.assertion.DatabaseAssertionMode;
 
 @SpringBootTest(classes = MovieTestApplication.class)
 @AutoConfigureMockMvc
@@ -20,8 +28,8 @@ public class MovieControllerTest {
 	@Autowired
 	private MockMvc mockMvc;
 
-	// @Autowired
-	// private GsonService gsonService;
+	@Autowired
+	private GsonService gsonService;
 
 	@Test
 	public void findById() throws Exception {
@@ -82,4 +90,7 @@ public class MovieControllerTest {
 						.header("zuhot-key", "abc12345"))
 				.andExpect(content().string(containsString(expect.toString())));
 	}
+
+ 
+
 }
