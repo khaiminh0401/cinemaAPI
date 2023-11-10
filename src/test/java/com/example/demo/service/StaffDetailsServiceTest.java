@@ -36,15 +36,22 @@ public class StaffDetailsServiceTest {
     }
     
     @Test
-	public void testLoadUserByUsernameIsNull() throws Exception {
-		Throwable exception = assertThrows(InvalidRequestParameterException.class, () -> {
-			throw new InvalidRequestParameterException("Seat", RequestParameterEnum.NOT_FOUND);
-		});
-		
-		try {
-			staffDetailsService.loadUserByUsername(null);
-		} catch (Exception e) {
-			assertEquals(e.getMessage(), exception.getMessage());
-		}
-	}
+    public void testLoadUserByUsernameIsNull() throws Exception {
+        InvalidRequestParameterException exception = assertThrows(
+                InvalidRequestParameterException.class,
+                () -> staffDetailsService.loadUserByUsername(null));
+        assertEquals(400, exception.getResponse().getStatusCode());
+        assertEquals("Staff Details", exception.getResponse().getMessage());
+        assertEquals(RequestParameterEnum.NOTHING.getName(), exception.getResponse().getParam());
+    }
+    
+    @Test
+    public void testLoadUserByUsernameIsPresent() throws Exception {
+        InvalidRequestParameterException exception = assertThrows(
+                InvalidRequestParameterException.class,
+                () -> staffDetailsService.loadUserByUsername("duck#@gmail.com"));
+        assertEquals(400, exception.getResponse().getStatusCode());
+        assertEquals("Staff Details", exception.getResponse().getMessage());
+        assertEquals(RequestParameterEnum.NOT_FOUND.getName(), exception.getResponse().getParam());
+    }
 }
