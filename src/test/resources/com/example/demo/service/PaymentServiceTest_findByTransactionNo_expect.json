@@ -1,0 +1,9 @@
+{
+	"id": 9,
+	"payMethodId": "PM6",
+	"staffId": null,
+	"billId": 12,
+	"status": 0,
+	"vnp_TransactionNo": "12345",
+	"amout": 10000.0
+}
