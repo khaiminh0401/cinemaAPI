@@ -39,15 +39,13 @@ public class TokenVnpayServiceTest {
     }
 
     @Test
-    public void insertIsNull() throws Exception {
-        Throwable exception = assertThrows(InvalidRequestParameterException.class, () -> {
-            throw new InvalidRequestParameterException("TokenVNPay", RequestParameterEnum.NOTHING);
-        });
-        try {
-            tokenVnpayService.insert(Optional.of(null));
-        } catch (Exception e) {
-            assertEquals(e.getMessage(), exception.getMessage());
-        }
+    public void insertIsEmpty() throws Exception {
+        InvalidRequestParameterException exception = assertThrows(
+                InvalidRequestParameterException.class,
+                () -> tokenVnpayService.insert(Optional.empty()));
+        assertEquals(400, exception.getResponse().getStatusCode());
+        assertEquals("TokenVNPay", exception.getResponse().getMessage());
+        assertEquals(RequestParameterEnum.NOTHING.getName(), exception.getResponse().getParam());
     }
 
     @Test
@@ -58,15 +56,13 @@ public class TokenVnpayServiceTest {
     }
 
     @Test
-    public void findByCustomerIdIsNull() throws Exception {
-        Throwable exception = assertThrows(InvalidRequestParameterException.class, () -> {
-            throw new InvalidRequestParameterException("CustomerId", RequestParameterEnum.NOTHING);
-        });
-        try {
-            tokenVnpayService.findByCustomerId(Optional.of(null));
-        } catch (Exception e) {
-            assertEquals(e.getMessage(), exception.getMessage());
-        }
+    public void findByCustomerIdIsEmpty() throws Exception {
+        InvalidRequestParameterException exception = assertThrows(
+                InvalidRequestParameterException.class,
+                () -> tokenVnpayService.findByCustomerId(Optional.empty()));
+        assertEquals(400, exception.getResponse().getStatusCode());
+        assertEquals("CustomerId", exception.getResponse().getMessage());
+        assertEquals(RequestParameterEnum.NOTHING.getName(), exception.getResponse().getParam());
     }
 
 }
