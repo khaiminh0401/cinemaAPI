@@ -32,7 +32,7 @@ public class RoomController {
     }
 
     @GetMapping("/getRoomWithFilm")
-    public ResponseEntity<?> getByBranch(@RequestParam("id") String id, @RequestParam("showdate") String showdate) {
+    public ResponseEntity<?> getByBranch(@RequestParam("id") String id, @RequestParam("showdate") String showdate) throws InvalidRequestParameterException {
         return ResponseEntity.ok(roomService.getByBranch(id, showdate));
     }
 }
