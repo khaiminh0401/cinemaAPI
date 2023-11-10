@@ -4,10 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -15,8 +11,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import com.example.demo.MovieApplication;
 import com.example.demo.admin.controller.enums.RequestParameterEnum;
 import com.example.demo.config.GsonService;
-import com.example.demo.dao.SeatDao;
-import com.example.demo.entity.Seat;
 import com.example.demo.exception.InvalidRequestParameterException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -25,7 +19,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @AutoConfigureMockMvc
 public class SeatServiceTest {
 	@Autowired
-    private SeatService seatService;
+	private SeatService seatService;
 
 	@Autowired
 	private GsonService gsonService;
@@ -35,26 +29,40 @@ public class SeatServiceTest {
 
     @Test
     public void findByRoomId() throws JsonProcessingException{
-    	gsonService = new GsonService();
         String expect = gsonService.getValueExpect(this.getClass().toString(), "findByRoomId");
-        System.err.println("expect" + expect);
         String result = objectMapper.writeValueAsString(seatService.findByRoomId("PC01"));
-        System.err.println("result" + result);
         assertEquals(expect, result);
     }
     
     @Test
-	public void findByRoomIdIsNull() throws Exception {
-		Throwable exception = assertThrows(InvalidRequestParameterException.class, () -> {
-			throw new InvalidRequestParameterException("Seat", RequestParameterEnum.NOT_FOUND);
-		});
-		
-		try {
-			seatService.findByRoomId(null);
-		} catch (Exception e) {
-			assertEquals(e.getMessage(), exception.getMessage());
-		}
-	}
+    public void findByRoomIdIsNull() throws Exception {
+        InvalidRequestParameterException exception = assertThrows(
+                InvalidRequestParameterException.class,
+                () -> seatService.findByRoomId(null));
+        assertEquals(400, exception.getResponse().getStatusCode());
+        assertEquals("Seat", exception.getResponse().getMessage());
+        assertEquals(RequestParameterEnum.NOTHING.getName(), exception.getResponse().getParam());
+    }
+    
+    @Test
+    public void findByRoomIdIsNotPresent() throws Exception {
+        InvalidRequestParameterException exception = assertThrows(
+                InvalidRequestParameterException.class,
+                () -> seatService.findByRoomId("-PC01"));
+        assertEquals(400, exception.getResponse().getStatusCode());
+        assertEquals("Seat", exception.getResponse().getMessage());
+        assertEquals(RequestParameterEnum.NOT_FOUND.getName(), exception.getResponse().getParam());
+    }
+    
+    @Test
+    public void findByRoomIdIsEmpty() throws Exception {
+        InvalidRequestParameterException exception = assertThrows(
+                InvalidRequestParameterException.class,
+                () -> seatService.findByRoomId(""));
+        assertEquals(400, exception.getResponse().getStatusCode());
+        assertEquals("Seat", exception.getResponse().getMessage());
+        assertEquals(RequestParameterEnum.NOTHING.getName(), exception.getResponse().getParam());
+    }    
       
     @Test
     public void getTotal() throws JsonProcessingException{
@@ -65,36 +73,49 @@ public class SeatServiceTest {
     }
     
     @Test
-	public void getTotalIsNull() throws Exception {
-		Throwable exception = assertThrows(InvalidRequestParameterException.class, () -> {
-			throw new InvalidRequestParameterException("Seat", RequestParameterEnum.NOT_FOUND);
-		});
-		
-		try {
-			seatService.getTotal(0, null);
-		} catch (Exception e) {
-			assertEquals(e.getMessage(), exception.getMessage());
-		}
-	}
+    public void getTotalIsNull() throws Exception {
+        InvalidRequestParameterException exception = assertThrows(
+                InvalidRequestParameterException.class,
+                () -> seatService.getTotal(0, null));
+        assertEquals(400, exception.getResponse().getStatusCode());
+        assertEquals("Seat", exception.getResponse().getMessage());
+        assertEquals(RequestParameterEnum.NOTHING.getName(), exception.getResponse().getParam());
+    }
+    
+    @Test
+    public void getTotalIsNotPresent() throws Exception {
+        InvalidRequestParameterException exception = assertThrows(
+                InvalidRequestParameterException.class,
+                () -> seatService.getTotal(-1, ""));
+        assertEquals(400, exception.getResponse().getStatusCode());
+        assertEquals("Seat", exception.getResponse().getMessage());
+        assertEquals(RequestParameterEnum.NOTHING.getName(), exception.getResponse().getParam());
+    }
     
     @Test
     public void getSeatHasCheckTicket() throws JsonProcessingException{
-    	gsonService = new GsonService();
         String expect = gsonService.getValueExpect(this.getClass().toString(), "getSeatHasCheckTicket");
         String result = objectMapper.writeValueAsString(seatService.getSeatHasCheckTicket(1));
         assertEquals(expect, result);
     }
     
     @Test
-	public void getSeatHasCheckTicketIsNull() throws Exception {
-		Throwable exception = assertThrows(InvalidRequestParameterException.class, () -> {
-			throw new InvalidRequestParameterException("Seat", RequestParameterEnum.NOT_FOUND);
-		});
-		
-		try {
-			seatService.getSeatHasCheckTicket(0);
-		} catch (Exception e) {
-			assertEquals(e.getMessage(), exception.getMessage());
-		}
-	}
+    public void getSeatHasCheckTicketIsNull() throws Exception {
+        InvalidRequestParameterException exception = assertThrows(
+                InvalidRequestParameterException.class,
+                () -> seatService.getSeatHasCheckTicket(0));
+        assertEquals(400, exception.getResponse().getStatusCode());
+        assertEquals("Seat", exception.getResponse().getMessage());
+        assertEquals(RequestParameterEnum.NOTHING.getName(), exception.getResponse().getParam());
+    }
+    
+    @Test
+    public void getSeatHasCheckTicketIsNotPresent() throws Exception {
+        InvalidRequestParameterException exception = assertThrows(
+                InvalidRequestParameterException.class,
+                () -> seatService.getSeatHasCheckTicket(-1));
+        assertEquals(400, exception.getResponse().getStatusCode());
+        assertEquals("Seat", exception.getResponse().getMessage());
+        assertEquals(RequestParameterEnum.NOT_FOUND.getName(), exception.getResponse().getParam());
+    }
 }
