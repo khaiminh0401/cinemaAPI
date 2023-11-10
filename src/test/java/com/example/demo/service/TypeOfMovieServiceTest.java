@@ -42,13 +42,11 @@ public class TypeOfMovieServiceTest {
 
     @Test
     public void findByIdIsNull() throws Exception {
-        Throwable exception = assertThrows(InvalidRequestParameterException.class, () -> {
-            throw new InvalidRequestParameterException("Phim", RequestParameterEnum.NOT_FOUND);
-        });
-        try {
-            typeOfMovieService.findById(null);
-        } catch (Exception e) {
-            assertEquals(e.getMessage(), exception.getMessage());
-        }
+        InvalidRequestParameterException exception = assertThrows(
+                InvalidRequestParameterException.class,
+                () -> typeOfMovieService.findById(null));
+        assertEquals(400, exception.getResponse().getStatusCode());
+        assertEquals("Phim", exception.getResponse().getMessage());
+        assertEquals(RequestParameterEnum.NOT_FOUND.getName(), exception.getResponse().getParam());
     }
 }
