@@ -1,30 +1,21 @@
 [
     {
-        "id": "tp02",
-        "name": "Coca Cola",
-        "logo": "tp02.jpg",
-        "toppingofbranchid": 3,
-        "branchId": "cn1",
-        "quantity": -290,
-        "price": 12000.0
-    },
-    {
         "id": "tp01",
         "name": "Bắp rang bơ",
         "logo": "tp01.jpg",
         "toppingofbranchid": 1,
         "branchId": "cn1",
-        "quantity": 21,
+        "quantity": 30,
         "price": 10000.0
     },
     {
-        "id": "tp04",
-        "name": "Lẩu ly",
-        "logo": "tp04.jpg",
-        "toppingofbranchid": 5,
+        "id": "tp02",
+        "name": "Coca Cola",
+        "logo": "tp02.jpg",
+        "toppingofbranchid": 3,
         "branchId": "cn1",
-        "quantity": 25,
-        "price": 15000.0
+        "quantity": 30,
+        "price": 12000.0
     },
     {
         "id": "tp03",
@@ -32,7 +23,16 @@
         "logo": "tp03.jpg",
         "toppingofbranchid": 4,
         "branchId": "cn1",
-        "quantity": 20,
+        "quantity": 30,
+        "price": 15000.0
+    },
+    {
+        "id": "tp04",
+        "name": "Lẩu ly",
+        "logo": "tp04.jpg",
+        "toppingofbranchid": 5,
+        "branchId": "cn1",
+        "quantity": 30,
         "price": 15000.0
     }
 ]

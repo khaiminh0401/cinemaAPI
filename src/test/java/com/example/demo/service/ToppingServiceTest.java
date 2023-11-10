@@ -11,7 +11,6 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.example.demo.MovieTestApplication;
-import com.example.demo.admin.controller.enums.RequestParameterEnum;
 import com.example.demo.config.GsonService;
 import com.example.demo.entity.ToppingDetails;
 import com.example.demo.exception.InvalidRequestParameterException;
@@ -38,13 +37,13 @@ public class ToppingServiceTest {
     }
 
     @Test
-    public void findToppingOfBranchByIdIsEmpty() throws Exception {
-        InvalidRequestParameterException exception = assertThrows(
-                InvalidRequestParameterException.class,
-                () -> toppingService.findToppingOfBranchById(1));
-        assertEquals(400, exception.getResponse().getStatusCode());
-        assertEquals("Topping", exception.getResponse().getMessage());
-        assertEquals(RequestParameterEnum.NOTHING.getName(), exception.getResponse().getParam());
+    public void findToppingOfBranchByIdInvalid() throws Exception {
+        assertThrows(InvalidRequestParameterException.class, () -> toppingService.findToppingOfBranchById(0));
+    }
+
+    @Test
+    public void findToppingOfBranchByIdIsNull() throws Exception {
+        assertThrows(InvalidRequestParameterException.class, () -> toppingService.findToppingOfBranchById(null));
     }
 
     @Test
@@ -56,13 +55,18 @@ public class ToppingServiceTest {
     }
 
     @Test
+    public void findByBranchidInvalid() throws Exception {
+        assertThrows(InvalidRequestParameterException.class, () -> toppingService.findByBranchid(Optional.of("cn0")));
+    }
+
+    @Test
+    public void findByBranchidIsNull() throws Exception {
+        assertThrows(InvalidRequestParameterException.class, () -> toppingService.findByBranchid(Optional.of(null)));
+    }
+
+    @Test
     public void findByBranchidIsEmpty() throws Exception {
-        InvalidRequestParameterException exception = assertThrows(
-                InvalidRequestParameterException.class,
-                () -> toppingService.findByBranchid(Optional.empty()));
-        assertEquals(400, exception.getResponse().getStatusCode());
-        assertEquals("Topping", exception.getResponse().getMessage());
-        assertEquals(RequestParameterEnum.NOTHING.getName(), exception.getResponse().getParam());
+        assertThrows(InvalidRequestParameterException.class, () -> toppingService.findByBranchid(Optional.of("")));
     }
 
     @Test
@@ -75,23 +79,16 @@ public class ToppingServiceTest {
     }
 
     @Test
-    public void orderToppingIsEmpty() throws Exception {
-        InvalidRequestParameterException exception = assertThrows(
-                InvalidRequestParameterException.class,
-                () -> toppingService.orderTopping(Optional.empty()));
-        assertEquals(400, exception.getResponse().getStatusCode());
-        assertEquals("Topping Details", exception.getResponse().getMessage());
-        assertEquals(RequestParameterEnum.NOTHING.getName(), exception.getResponse().getParam());
+    public void orderToppingInvalid() throws Exception {
+        ToppingDetails toppingDetails = GsonService.toObject(gsonService.getValueInput(this.getClass().toString(),
+                Thread.currentThread().getStackTrace()[1].getMethodName()), ToppingDetails.class);
+        assertThrows(InvalidRequestParameterException.class,
+                () -> toppingService.orderTopping(Optional.of(toppingDetails)));
     }
 
     @Test
-    public void updateToppingOfBranchAfterOrderedWithIdAndQuantityZero() throws Exception {
-        InvalidRequestParameterException exception = assertThrows(
-                InvalidRequestParameterException.class,
-                () -> toppingService.updateToppingOfBranchAfterOrdered(0, 0));
-        assertEquals(400, exception.getResponse().getStatusCode());
-        assertEquals("ToppingId", exception.getResponse().getMessage());
-        assertEquals(RequestParameterEnum.NOT_FOUND.getName(), exception.getResponse().getParam());
+    public void orderToppingIsNull() throws Exception {
+        assertThrows(InvalidRequestParameterException.class, () -> toppingService.orderTopping(Optional.of(null)));
     }
 
     @Test
@@ -99,5 +96,11 @@ public class ToppingServiceTest {
         String expect = "RS_02";
         String result = toppingService.updateToppingOfBranchAfterOrdered(1, 1);
         assertEquals(expect, result);
+    }
+
+    @Test
+    public void updateToppingOfBranchAfterOrderedWithIdAndQuantityZero() throws Exception {
+        assertThrows(InvalidRequestParameterException.class,
+                () -> toppingService.updateToppingOfBranchAfterOrdered(0, 0));
     }
 }
