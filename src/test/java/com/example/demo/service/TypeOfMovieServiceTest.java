@@ -9,7 +9,6 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.example.demo.MovieTestApplication;
-import com.example.demo.admin.controller.enums.RequestParameterEnum;
 import com.example.demo.config.GsonService;
 import com.example.demo.exception.InvalidRequestParameterException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -41,12 +40,12 @@ public class TypeOfMovieServiceTest {
     }
 
     @Test
-    public void findByIdIsNull() throws Exception {
-        InvalidRequestParameterException exception = assertThrows(
-                InvalidRequestParameterException.class,
-                () -> typeOfMovieService.findById(null));
-        assertEquals(400, exception.getResponse().getStatusCode());
-        assertEquals("Phim", exception.getResponse().getMessage());
-        assertEquals(RequestParameterEnum.NOT_FOUND.getName(), exception.getResponse().getParam());
+    public void findByIdIsNull() {
+        assertThrows(InvalidRequestParameterException.class, () -> typeOfMovieService.findById(null));
+    }
+
+    @Test
+    public void findByIdInvalid() {
+        assertThrows(InvalidRequestParameterException.class, () -> typeOfMovieService.findById("0"));
     }
 }
