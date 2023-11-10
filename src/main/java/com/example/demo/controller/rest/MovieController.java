@@ -63,7 +63,7 @@ public class MovieController {
 	}
 
 	@GetMapping("/findMovieById")
-	public ResponseEntity<?> findMovieById(@RequestParam("movieId") String movieId) {
+	public ResponseEntity<?> findMovieById(@RequestParam("movieId") String movieId) throws InvalidRequestParameterException {
 		return ResponseEntity.ok(movieService.findMovieById(movieId));
 	}
 

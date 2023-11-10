@@ -143,9 +143,10 @@ public class MovieService implements BaseService<Movie, String> {
 	}
 	// ADMIN
 
-	public Optional<Movie> findMovieById(String movieId) {
+	public Optional<Movie> findMovieById(String movieId) throws InvalidRequestParameterException {
 		// List Languages
-		Optional<Movie> movie = movieDao.findById(movieId);
+		Optional<Movie> movie = Optional.ofNullable(movieDao.findById(movieId)
+				.orElseThrow(() -> new InvalidRequestParameterException("Phim", RequestParameterEnum.NOT_FOUND)));
 		List<Language> languages = new ArrayList<>();
 		List<LanguageOfMovie> listLanguageOfMovies = languageOfMovieDao.findByMovieId(movieId);
 		for (LanguageOfMovie languageOfMovie : listLanguageOfMovies) {

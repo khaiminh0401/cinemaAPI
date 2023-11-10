@@ -1,67 +1,67 @@
 {
-    "movieDetail": {
-        "id": "MP01",
-        "countryid": null,
-        "name": "QUÁI VẬT SÔNG MEKONG",
-        "yearofmanufacture": 2022,
-        "poster": "MP01.png",
-        "time": 105,
-        "describe": "Một con quái vật bí ẩn bỗng xuất hiện từ sông Mekong và tấn công vùng Bueng Kan, nó hủy diệt mọi thứ và khiến người dân mất kết nối hoàn toàn với thế giới bên ngoài. Sự kiện gây chấn động toàn Thái Lan này đã khiến các cơ quan chức năng cùng những nhà khoa học vô tình đến Bueng Kan đã tiến hành nghiên cứu phải huy động tất cả các lực lượng để bắt con quái vật điên rồ này trước khi quá muộn",
-        "trailer": "https://www.youtube.com/embed/orcxSddIA4s?si=sKE6Of5I3PG0oN2K",
-        "status": "0",
-        "limitage": 16,
-        "language": null,
-        "type": null,
-        "actor": null,
-        "director": null,
-        "countryName": "Thái Lan",
-        "movieTypeName": "Hành động",
-        "actorsName": "Chakrit Boonkeaw, Chatchai Katenut, Lamyai Haithongkham, Palita Chueasawathee, Somphong Kunapratom, Sushar Manaying, Teerapat Sajakul, Thanachat Tullayachat, Vithaya Pansringarm, Wanmai Chatborirak",
-        "directorsName": "Lee Thongkham",
-        "languagesName": "Lồng tiếng, Tiếng Thái - Phụ đề tiếng Việt",
-        "movieTypeId": "LP01",
-        "rate": 4.566666666666666
-    },
-    "listTypeOfMovies": [
-        {
-            "id": "MP35",
-            "poster": "MP35.png "
-        },
-        {
-            "id": "MP24",
-            "poster": "MP24.png"
-        },
-        {
-            "id": "MP29",
-            "poster": "MP29.png "
-        },
-        {
-            "id": "MP49",
-            "poster": "MP49.png"
-        },
-        {
-            "id": "MP55",
-            "poster": "MP55.png"
-        },
-        {
-            "id": "MP41",
-            "poster": "MP41.png "
-        },
-        {
-            "id": "MP13",
-            "poster": "MP13.png"
-        },
-        {
-            "id": "MP07",
-            "poster": "MP07.png"
-        },
-        {
-            "id": "MP01",
-            "poster": "MP01.png"
-        },
-        {
-            "id": "MP14",
-            "poster": "MP14.png"
-        }
-    ]
+	"movieDetail": {
+		"id": "MP07",
+		"countryid": null,
+		"name": "CÙ LAO XÁC SỐNG",
+		"yearofmanufacture": 2022,
+		"poster": "MP07.png",
+		"time": 93,
+		"describe": "Phim nói về hành trình của Công - một thầy thuốc đông y cố gắng đưa cha và con gái thoát khỏi sự truy đuổi của xác sống khi đại dịch bùng nổ. Họ thất lạc nhau trên đường chạy trốn. Trong lúc tìm lại con gái, Công gặp những người bụ nạn khác giống mình. Họ cùng nhau hợp sức thành một nhóm, cố gắng vượt qua thử thách sống còn. Liệu kết quả sẽ ra sao khi đại dịch càng ngày càng lan rộng",
+		"trailer": "https://www.youtube.com/embed/fCi9o3iieJU?si=Obuz3Dg_554uQI59",
+		"status": "1",
+		"limitage": 0,
+		"language": null,
+		"type": null,
+		"actor": null,
+		"director": null,
+		"countryName": "Việt Nam",
+		"movieTypeName": "Hành động, Hoạt hình",
+		"actorsName": "Huỳnh Đông, La Thành, Lê Lộc, Ốc Thanh Vân, Trần Phong, Xuân Nghị",
+		"directorsName": "Nguyễn Thành Nam",
+		"languagesName": "Tiếng Nhật - Phụ đề tiếng Anh, Tiếng Nhật - Phụ đề tiếng Việt",
+		"movieTypeId": "LP01,LP03",
+		"rate": 4.473684210526316
+	},
+	"listTypeOfMovies": [
+		{
+			"id": "MP48",
+			"poster": "MP48.png "
+		},
+		{
+			"id": "MP29",
+			"poster": "MP29.png "
+		},
+		{
+			"id": "MP55",
+			"poster": "MP55.png"
+		},
+		{
+			"id": "MP41",
+			"poster": "MP41.png "
+		},
+		{
+			"id": "MP18",
+			"poster": "MP18.png"
+		},
+		{
+			"id": "MP19",
+			"poster": "MP19.png"
+		},
+		{
+			"id": "MP23",
+			"poster": "MP23.png "
+		},
+		{
+			"id": "MP54",
+			"poster": "MP54.png"
+		},
+		{
+			"id": "MP03",
+			"poster": "MP03.png"
+		},
+		{
+			"id": "MP10",
+			"poster": "MP10.png"
+		}
+	]
 }
