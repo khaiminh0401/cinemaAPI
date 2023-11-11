@@ -17,7 +17,7 @@ import com.example.demo.service.DimensionService;
 @CrossOrigin("*")
 public class DimensionController {
     @Autowired
-    DimensionService dimensionService;
+    private DimensionService dimensionService;
 
     @GetMapping({ "/", "" })
     public ResponseEntity<?> findAll() {
@@ -26,7 +26,6 @@ public class DimensionController {
 
     @GetMapping("/{id}")
     public ResponseEntity<?> findById(@PathVariable("id") Integer id) throws InvalidRequestParameterException {
-        return ResponseEntity.ok(dimensionService.findById(id)
-                .orElseThrow(() -> new InvalidRequestParameterException("Dimension", RequestParameterEnum.NOT_EXISTS)));
+        return ResponseEntity.ok(dimensionService.findById(id));
     }
 }
