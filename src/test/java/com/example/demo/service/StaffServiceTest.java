@@ -1,11 +1,9 @@
 package com.example.demo.service;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.sql.Date;
-import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,38 +11,36 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.example.demo.MovieApplication;
-import com.example.demo.admin.controller.enums.RequestParameterEnum;
 import com.example.demo.config.GsonService;
 import com.example.demo.entity.Staff;
 import com.example.demo.exception.InvalidRequestParameterException;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.springtestdbunit.annotation.DatabaseSetup;
+import com.github.springtestdbunit.annotation.ExpectedDatabase;
+import com.github.springtestdbunit.assertion.DatabaseAssertionMode;
 
 @SpringBootTest(classes = MovieApplication.class)
 @AutoConfigureMockMvc
 public class StaffServiceTest {
 	@Autowired
     private StaffService staffService;
-
-	@Autowired
-	private GsonService gsonService;
-
-	@Autowired
-	private ObjectMapper objectMapper;
 	
 	private Staff staff;
     
+	@DatabaseSetup(value = "/db/StaffServiceTest_testInsertStaffSuccess_db.xml")
+	@ExpectedDatabase(value = "/expecteddb/StaffServiceTest_testInsertStaffSuccess_db_expect.xml", assertionMode = DatabaseAssertionMode.NON_STRICT_UNORDERED)
     @Test
-	public void testInsert() throws Exception {
-    	staff = new Staff("NDT1", "branch1", "John Doe", true, "password123",
-                new Date(0), "123456789", "john.doe@example.com", true, 1);
-		assertDoesNotThrow(() -> staffService.insert(staff));
-	}
-    
-    @Test
-	public void testInsertWithThowError() throws Exception {
-    	staff = new Staff("NDT1", "branch1", "John Doe", true, "password123",
-                new Date(0), "123456789", "john.doe@example.com", true, 1);
-		assertThrows(InvalidRequestParameterException.class, () -> staffService.insert(staff));
+	public void testInsertStaffSuccess() throws InvalidRequestParameterException {
+    	staff = new Staff();
+    	staff.setId("NDT1");
+        staff.setBranchId("cn1");
+        staff.setName("John Doe");
+        staff.setGender(true);
+        staff.setPassword("12345678");
+        staff.setPhone("123456789");
+        staff.setEmail("john.doe@example.com");
+        staff.setStatus(true);
+        staff.setRole(1);
+        staffService.insert(staff);
 	}
 }

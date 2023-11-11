@@ -15,7 +15,6 @@ import org.seasar.doma.Table;
 @Table(name = "staff")
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 public class Staff {
 	@Id
 	@Column(name = "id")
