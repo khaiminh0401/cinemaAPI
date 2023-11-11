@@ -28,14 +28,14 @@ public class SeatServiceTest {
 	private ObjectMapper objectMapper;
 
     @Test
-    public void findByRoomId() throws JsonProcessingException{
+    public void testFindByRoomId() throws JsonProcessingException{
         String expect = gsonService.getValueExpect(this.getClass().toString(), "findByRoomId");
         String result = objectMapper.writeValueAsString(seatService.findByRoomId("PC01"));
         assertEquals(expect, result);
     }
     
     @Test
-    public void findByRoomIdIsNull() throws Exception {
+    public void testFindByRoomIdIsNull() throws Exception {
         InvalidRequestParameterException exception = assertThrows(
                 InvalidRequestParameterException.class,
                 () -> seatService.findByRoomId(null));
@@ -45,7 +45,7 @@ public class SeatServiceTest {
     }
     
     @Test
-    public void findByRoomIdIsNotPresent() throws Exception {
+    public void testFindByRoomIdIsNotPresent() throws Exception {
         InvalidRequestParameterException exception = assertThrows(
                 InvalidRequestParameterException.class,
                 () -> seatService.findByRoomId("-PC01"));
@@ -55,7 +55,7 @@ public class SeatServiceTest {
     }
     
     @Test
-    public void findByRoomIdIsEmpty() throws Exception {
+    public void testFindByRoomIdIsEmpty() throws Exception {
         InvalidRequestParameterException exception = assertThrows(
                 InvalidRequestParameterException.class,
                 () -> seatService.findByRoomId(""));
@@ -73,7 +73,7 @@ public class SeatServiceTest {
     }
     
     @Test
-    public void getTotalIsNull() throws Exception {
+    public void testGetTotalIsNull() throws Exception {
         InvalidRequestParameterException exception = assertThrows(
                 InvalidRequestParameterException.class,
                 () -> seatService.getTotal(0, null));
@@ -83,7 +83,7 @@ public class SeatServiceTest {
     }
     
     @Test
-    public void getTotalIsNotPresent() throws Exception {
+    public void testGetTotalIsNotPresent() throws Exception {
         InvalidRequestParameterException exception = assertThrows(
                 InvalidRequestParameterException.class,
                 () -> seatService.getTotal(-1, ""));
@@ -93,14 +93,14 @@ public class SeatServiceTest {
     }
     
     @Test
-    public void getSeatHasCheckTicket() throws JsonProcessingException{
+    public void testGetSeatHasCheckTicket() throws JsonProcessingException{
         String expect = gsonService.getValueExpect(this.getClass().toString(), "getSeatHasCheckTicket");
         String result = objectMapper.writeValueAsString(seatService.getSeatHasCheckTicket(1));
         assertEquals(expect, result);
     }
     
     @Test
-    public void getSeatHasCheckTicketIsNull() throws Exception {
+    public void testGetSeatHasCheckTicketIsNull() throws Exception {
         InvalidRequestParameterException exception = assertThrows(
                 InvalidRequestParameterException.class,
                 () -> seatService.getSeatHasCheckTicket(0));
@@ -110,7 +110,7 @@ public class SeatServiceTest {
     }
     
     @Test
-    public void getSeatHasCheckTicketIsNotPresent() throws Exception {
+    public void testGetSeatHasCheckTicketIsNotPresent() throws Exception {
         InvalidRequestParameterException exception = assertThrows(
                 InvalidRequestParameterException.class,
                 () -> seatService.getSeatHasCheckTicket(-1));
