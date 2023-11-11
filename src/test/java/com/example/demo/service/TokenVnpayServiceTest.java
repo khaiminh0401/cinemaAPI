@@ -34,35 +34,42 @@ public class TokenVnpayServiceTest {
         TokenVnpay tokenVnpay = GsonService.toObject(gsonService.getValueInput(this.getClass().toString(), "insert"),
                 TokenVnpay.class);
         String result = tokenVnpayService.insert(Optional.of(tokenVnpay));
-        String expect = "SUCCESS";
+        String expect = "RS_02";
         assertEquals(result, expect);
     }
 
     @Test
-    public void insertIsEmpty() throws Exception {
-        InvalidRequestParameterException exception = assertThrows(
-                InvalidRequestParameterException.class,
-                () -> tokenVnpayService.insert(Optional.empty()));
-        assertEquals(400, exception.getResponse().getStatusCode());
-        assertEquals("TokenVNPay", exception.getResponse().getMessage());
-        assertEquals(RequestParameterEnum.NOTHING.getName(), exception.getResponse().getParam());
+    public void insertInvalid() throws Exception {
+        TokenVnpay tokenVnpay = GsonService.toObject(gsonService.getValueInput(this.getClass().toString(),
+                Thread.currentThread().getStackTrace()[1].getMethodName()), TokenVnpay.class);
+        assertThrows(InvalidRequestParameterException.class, () -> tokenVnpayService.insert(Optional.of(tokenVnpay)));
+    }
+
+    @Test
+    public void insertIsNull() throws Exception {
+        TokenVnpay tokenVnpay = GsonService.toObject(gsonService.getValueInput(this.getClass().toString(),
+                Thread.currentThread().getStackTrace()[1].getMethodName()), TokenVnpay.class);
+        assertThrows(InvalidRequestParameterException.class, () -> tokenVnpayService.insert(Optional.of(tokenVnpay)));
     }
 
     @Test
     public void findByCustomerId() throws Exception {
-        String expect = gsonService.getValueExpect(this.getClass().toString(), "findByCustomerId");
+        String expect = gsonService.getValueExpect(this.getClass().toString(),
+                Thread.currentThread().getStackTrace()[1].getMethodName());
         String result = objectMapper.writeValueAsString(tokenVnpayService.findByCustomerId(Optional.of(1)));
         assertEquals(expect, result);
     }
 
     @Test
-    public void findByCustomerIdIsEmpty() throws Exception {
-        InvalidRequestParameterException exception = assertThrows(
-                InvalidRequestParameterException.class,
-                () -> tokenVnpayService.findByCustomerId(Optional.empty()));
-        assertEquals(400, exception.getResponse().getStatusCode());
-        assertEquals("CustomerId", exception.getResponse().getMessage());
-        assertEquals(RequestParameterEnum.NOTHING.getName(), exception.getResponse().getParam());
+    public void findByCustomerIdInvalid() throws Exception {
+        assertThrows(InvalidRequestParameterException.class,
+                () -> tokenVnpayService.findByCustomerId(Optional.of(0)));
+    }
+
+    @Test
+    public void findByCustomerIdIsNull() throws Exception {
+        assertThrows(InvalidRequestParameterException.class,
+                () -> tokenVnpayService.findByCustomerId(Optional.of(null)));
     }
 
 }
