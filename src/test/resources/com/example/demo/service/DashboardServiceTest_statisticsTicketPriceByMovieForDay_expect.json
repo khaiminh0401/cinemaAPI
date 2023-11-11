@@ -1,0 +1,14 @@
+[
+    {
+        "id": 0,
+        "month": null,
+        "color": null,
+        "totalTicket": 14,
+        "totalPrice": 1176000.0,
+        "movieName": null,
+        "year": 0,
+        "hour": 14,
+        "date": "2023-11-01",
+        "totalShowtime": 0
+    }
+]

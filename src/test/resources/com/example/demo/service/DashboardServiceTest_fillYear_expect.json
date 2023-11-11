@@ -1,0 +1,14 @@
+[
+    {
+        "id": 0,
+        "month": null,
+        "color": null,
+        "totalTicket": 0,
+        "totalPrice": 0.0,
+        "movieName": null,
+        "year": 2023,
+        "hour": 0,
+        "date": null,
+        "totalShowtime": 0
+    }
+]
