@@ -113,9 +113,12 @@ public class MovieService implements BaseService<Movie, String> {
 		return movieDao.findMoviesNowShowing();
 	}
 
-	public MovieDetailModel findMovieDetailPage(String movieId) {
-		MovieDto movieDto = movieDao.findMovieDetailPage(movieId);
-		return new MovieDetailModel(movieDto, movieDao.findByTypeOfMovieId(movieDto.getMovieTypeId().split(",")));
+	public MovieDetailModel findMovieDetailPage(Optional<String> movieId) throws InvalidRequestParameterException {
+		if (movieId != null && movieId.isPresent()) {
+			MovieDto movieDto = movieDao.findMovieDetailPage(movieId.get());
+			return new MovieDetailModel(movieDto, movieDao.findByTypeOfMovieId(movieDto.getMovieTypeId().split(",")));
+		}
+		throw new InvalidRequestParameterException("MovieId", RequestParameterEnum.INVALID_TYPE);
 	}
 
 	public MovieDto findByShowTimeId(int showTimeId) {
@@ -145,8 +148,8 @@ public class MovieService implements BaseService<Movie, String> {
 
 	public Optional<Movie> findMovieById(String movieId) throws InvalidRequestParameterException {
 		// List Languages
-		Optional<Movie> movie = Optional.ofNullable(movieDao.findById(movieId)
-				.orElseThrow(() -> new InvalidRequestParameterException("Phim", RequestParameterEnum.NOT_FOUND)));
+		Optional<Movie> movie = movieDao.findById(movieId);
+		movie.orElseThrow(() -> new InvalidRequestParameterException("Phim", RequestParameterEnum.NOT_FOUND));
 		List<Language> languages = new ArrayList<>();
 		List<LanguageOfMovie> listLanguageOfMovies = languageOfMovieDao.findByMovieId(movieId);
 		for (LanguageOfMovie languageOfMovie : listLanguageOfMovies) {
@@ -271,7 +274,12 @@ public class MovieService implements BaseService<Movie, String> {
 		throw new InvalidRequestParameterException("Key does not exist", RequestParameterEnum.NOT_EXISTS);
 	}
 
-	public Movie getByBill(int id) {
-		return movieDao.getByBill(id);
+	public Movie getByBill(Optional<Integer> id) throws InvalidRequestParameterException {
+		if (id != null && id.isPresent()) {
+			Movie movie = movieDao.getByBill(id.get());
+			return movie;
+		}
+		throw new InvalidRequestParameterException("BillId", RequestParameterEnum.INVALID_TYPE);
+
 	}
 }
