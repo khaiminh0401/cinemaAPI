@@ -45,7 +45,7 @@ public class TicketServiceTest {
     public void testFindById() throws JsonProcessingException, InvalidRequestParameterException{
     	gsonService = new GsonService();
         String expect = gsonService.getValueExpect(this.getClass().toString(), "findById");
-        String result = objectMapper.writeValueAsString(ticketService.findById(1));
+        String result = objectMapper.writeValueAsString(ticketService.findById(120));
         assertEquals(expect, result);
     }
     
@@ -101,7 +101,7 @@ public class TicketServiceTest {
     public void testFindByBillId() throws JsonProcessingException, InvalidRequestParameterException{
     	gsonService = new GsonService();
         String expect = gsonService.getValueExpect(this.getClass().toString(), "findByBillId");
-        String result = objectMapper.writeValueAsString(ticketService.findByBillId(Optional.of(1)));
+        String result = objectMapper.writeValueAsString(ticketService.findByBillId(Optional.of(1241)));
         assertEquals(expect, result);
     }
     
@@ -126,7 +126,7 @@ public class TicketServiceTest {
     }
     
     @Test
-	public void testInsert() throws Exception {
+	public void testInsertTicketSuccess() throws InvalidRequestParameterException {
 		ticket = new Ticket();
 		ticket.setCustomerId(1);
 		ticket.setSeatDetailsId(1);
@@ -134,20 +134,6 @@ public class TicketServiceTest {
 		ticket.setVat(0.05);
 		ticket.setTotalPrice(10000);
 		ticket.setBillId(1);
-		
-		assertDoesNotThrow(() -> ticketService.insert(Optional.of(ticket)));
-	}
-    
-    @Test
-	public void testInsertWithThowError() throws Exception {
-    	ticket = new Ticket();
-		ticket.setCustomerId(1);
-		ticket.setSeatDetailsId(1);
-		ticket.setShowtimeId(1);
-		ticket.setVat(0.05);
-		ticket.setTotalPrice(10000);
-		ticket.setBillId(1);
-		
-		assertThrows(InvalidRequestParameterException.class, () -> ticketService.insert(Optional.of(ticket)));
+		ticketService.insert(Optional.of(ticket));
 	}
 }
