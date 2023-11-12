@@ -157,6 +157,7 @@ public class MovieServiceTest {
 
 	@Test
 	public void findMovieByIdIsEmpty() throws InvalidRequestParameterException {
+		assertThrows(InvalidRequestParameterException.class, () -> movieService.findMovieById(""));
 	}
 
 	@Test
