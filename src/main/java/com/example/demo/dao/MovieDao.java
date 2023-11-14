@@ -11,6 +11,7 @@ import org.seasar.doma.boot.ConfigAutowireable;
 
 import com.example.demo.dto.MovieDto;
 import com.example.demo.dto.PosterDto;
+import com.example.demo.dto.ReviewDto;
 import com.example.demo.entity.Movie;
 
 @Dao
@@ -51,7 +52,10 @@ public interface MovieDao {
 
 	@Function
 	int updatemovie(@In String movie);
-	
+
 	@Select
 	Movie getByBill(int id);
+
+	@Select
+	List<ReviewDto> getReviewByMovieId(String id, Integer pageSize, Integer page);
 }

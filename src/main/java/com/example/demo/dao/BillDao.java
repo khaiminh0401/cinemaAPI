@@ -3,7 +3,6 @@ package com.example.demo.dao;
 import com.example.demo.dto.BillDetailsDto;
 import com.example.demo.dto.BillHistoryDto;
 import com.example.demo.entity.Bill;
-import com.example.demo.entity.Customer;
 import com.example.demo.model.RateAndReviewBillModel;
 
 import org.seasar.doma.Dao;
@@ -17,6 +16,9 @@ import java.util.List;
 @Dao
 @ConfigAutowireable
 public interface BillDao {
+	@Select
+	Bill findById(Integer id);
+	
 	@Select
 	List<BillHistoryDto> getBillHistory(Integer customerId);
 
@@ -34,4 +36,10 @@ public interface BillDao {
 
 	@Update(sqlFile = true)
 	int updateExportStatus(int id, boolean exportstatus);
+	
+	@Update(sqlFile = true)
+	int updateTotalPrice(int id, double totalPrice);
+	
+	@Select
+	BillDetailsDto checkout(Integer billId, Integer customerId);
 }

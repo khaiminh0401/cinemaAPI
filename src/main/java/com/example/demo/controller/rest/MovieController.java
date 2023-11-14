@@ -107,4 +107,9 @@ public class MovieController {
 	public ResponseEntity<?> getByBill(@RequestParam("id") Optional<Integer> id) throws InvalidRequestParameterException {
 		return ResponseEntity.ok(movieService.getByBill(id));
 	}
+
+	@GetMapping("/getReviewByMovieId/{id}")
+	public ResponseEntity<?> getReviewByMovieId(@PathVariable("id") String id, @RequestParam Integer pageSize, @RequestParam Integer page) {
+		return ResponseEntity.ok(movieService.getReviewByMovieId(id, pageSize, page));
+	}
 }
