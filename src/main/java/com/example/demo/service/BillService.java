@@ -34,8 +34,9 @@ public class BillService {
 	@Autowired
 	ToppingService toppingService;
 	
-	public Bill findById(Optional<Integer> id) {
-		id.orElseThrow();
+	public Bill findById(Optional<Integer> id) throws Exception{
+		if(id.isEmpty()) 
+			throw new InvalidRequestParameterException("Bill", RequestParameterEnum.NOTHING);
 		return billDao.findById(id.get());
 	}
 

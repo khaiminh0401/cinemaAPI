@@ -51,4 +51,28 @@ public class BillServiceTest {
             billService.getBillDetails(Optional.empty(), Optional.empty());
         });
     }
+
+    @Test
+    void testMethodFindByMovieSuccess() throws Exception{
+        ObjectMapper mapper = new ObjectMapper();
+        String expect = gsonService.getValueExpect(this.getClass().toString(), "testMethodFindByMovieSuccess");
+        String actual = mapper.writeValueAsString(billService.findByMovie("MP01"));
+        assertEquals(expect, actual);
+    }
+
+    @Test
+    public void testMethodFindByIdWithoutId() {
+        assertThrows(InvalidRequestParameterException.class, () -> {
+            billService.findById(Optional.empty());
+        });
+    }
+
+    @Test
+    public void testMethodFindByIdSuccess() throws Exception{
+        ObjectMapper mapper = new ObjectMapper();
+        String expect = gsonService.getValueExpect(this.getClass().toString(), "testMethodFindByIdSuccess");
+        String actual = mapper.writeValueAsString(billService.findById(Optional.of(21)));
+        assertEquals(expect, actual);
+    }
+
 }
