@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.Optional;
@@ -14,6 +15,7 @@ import org.springframework.test.context.support.DependencyInjectionTestExecution
 import com.example.demo.MovieTestApplication;
 import com.example.demo.config.GsonService;
 import com.example.demo.exception.InvalidRequestParameterException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.springtestdbunit.DbUnitTestExecutionListener;
 
 @SpringBootTest(classes = MovieTestApplication.class)
@@ -28,8 +30,11 @@ public class BillServiceTest {
     private BillService billService;
 
     @Test
-    public void testMethodGetBillHistorySuccess() throws InvalidRequestParameterException{
-        billService.getBillHistory(Optional.of(1));
+    public void testMethodGetBillHistorySuccess() throws Exception{
+        ObjectMapper mapper = new ObjectMapper();
+        String expect = gsonService.getValueExpect(this.getClass().toString(), "testMethodGetBillHistorySuccess");
+        String actual = mapper.writeValueAsString(billService.getBillHistory(Optional.of(12)));
+        assertEquals(expect, actual);
     }
 
 
