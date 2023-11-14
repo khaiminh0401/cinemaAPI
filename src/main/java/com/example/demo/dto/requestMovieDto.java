@@ -17,9 +17,9 @@ public class requestMovieDto extends Movie {
     @Transient
     private List<String> arrayType;
     @Transient
-    private List<String> arrayActor;
+    private List<Integer> arrayActor;
     @Transient
-    private List<String> arrayDirector;
+    private List<Integer> arrayDirector;
     @Transient
     private String language2;
     @Transient

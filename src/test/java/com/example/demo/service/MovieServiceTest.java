@@ -1,20 +1,35 @@
 package com.example.demo.service;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import java.io.FileInputStream;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
+import org.mockito.Spy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.mock.web.MockMultipartFile;
+import org.springframework.test.context.TestExecutionListeners;
+import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 
 import com.example.demo.MovieTestApplication;
 import com.example.demo.config.GsonService;
+import com.example.demo.dao.MovieDao;
+import com.example.demo.dto.requestMovieDto;
 import com.example.demo.exception.InvalidRequestParameterException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.springtestdbunit.DbUnitTestExecutionListener;
+import com.github.springtestdbunit.annotation.DatabaseOperation;
+import com.github.springtestdbunit.annotation.DatabaseSetup;
+import com.github.springtestdbunit.annotation.ExpectedDatabase;
+import com.github.springtestdbunit.assertion.DatabaseAssertionMode;
 
 /**
  * @author thanhson
@@ -22,6 +37,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  */
 @SpringBootTest(classes = MovieTestApplication.class)
 @AutoConfigureMockMvc
+@TestExecutionListeners({ DependencyInjectionTestExecutionListener.class, DbUnitTestExecutionListener.class })
 public class MovieServiceTest {
 
 	@Autowired
@@ -30,10 +46,11 @@ public class MovieServiceTest {
 	@Autowired
 	private MovieService movieService;
 
+	
 	@Autowired
 	private ObjectMapper objectMapper;
 
-	@Test
+	@Test	
 	public void findAll() throws InvalidRequestParameterException, JsonProcessingException {
 		String expect = gsonService.getValueExpect(this.getClass().toString(), "findAll");
 		String result = objectMapper.writeValueAsString(movieService.findAll());
@@ -177,5 +194,54 @@ public class MovieServiceTest {
 	@Test
 	public void getByBillIsNull() throws InvalidRequestParameterException, JsonProcessingException {
 		assertThrows(InvalidRequestParameterException.class, () -> movieService.getByBill(null));
+	}
+
+	@DatabaseSetup(value = "/db/MovieServiceTest_testInsertMovieSuccess_db.xml")
+	@ExpectedDatabase(value = "/expecteddb/MovieServiceTest_testInsertMovieSuccess_db_expect.xml", assertionMode = DatabaseAssertionMode.NON_STRICT_UNORDERED)
+	@Test
+	public void insertMovieSucces() throws Exception {
+		requestMovieDto movieDto = new requestMovieDto();
+		movieDto.setId("MP56");
+		movieDto.setName("Alibaba");
+		movieDto.setYearofmanufacture(2023);
+		movieDto.setCountryid(20);
+		movieDto.setTime(105);
+		movieDto.setDescribe("test demo");
+		movieDto.setTrailer("test");
+		movieDto.setStatus("1");
+		movieDto.setPoster("MP56.jpg");
+		movieDto.setArrayLanguage(new ArrayList<Integer>(List.of(8, 16)));
+		movieDto.setArrayType(new ArrayList<String>(List.of("LP01")));
+		movieDto.setLimitage(16);
+		movieDto.setArrayActor(new ArrayList<Integer>(List.of(1, 2)));
+		movieDto.setArrayDirector(new ArrayList<Integer>(List.of(1)));
+		FileInputStream fis = new FileInputStream(
+				System.getProperty("user.dir") + "\\src\\main\\resources\\static\\images\\movie\\MP56.jpg");
+		MockMultipartFile multipartFile = new MockMultipartFile("MP56", "MP56.jpg", "image/jpg", fis);
+		assertDoesNotThrow(() -> movieService.insertMovie(movieDto, multipartFile));
+	}
+	
+	@DatabaseSetup(value = "/expecteddb/MovieServiceTest_testInsertMovieSuccess_db_expect.xml")
+	@ExpectedDatabase(value = "/expecteddb/MovieServiceTest_testUpdateMovieSuccess_db_expect.xml", assertionMode = DatabaseAssertionMode.NON_STRICT_UNORDERED)
+	@Test
+	public void updateMovieSucces() throws Exception {
+		requestMovieDto movieDto = new requestMovieDto();
+		movieDto.setId("MP56");
+		movieDto.setName("Alibaba Kun");
+		movieDto.setDescribe("test demo 123");
+		movieDto.setYearofmanufacture(2023);
+		movieDto.setTrailer("test");
+		movieDto.setTime(105);
+		movieDto.setStatus("1");
+		movieDto.setCountryid(20);
+		movieDto.setLimitage(16);
+		movieDto.setArrayLanguage(new ArrayList<Integer>(List.of(8, 16)));
+		movieDto.setArrayType(new ArrayList<String>(List.of("LP01")));
+		movieDto.setArrayActor(new ArrayList<Integer>(List.of(1, 2)));
+		movieDto.setArrayDirector(new ArrayList<Integer>(List.of(1)));
+		FileInputStream fis = new FileInputStream(
+				System.getProperty("user.dir") + "\\src\\main\\resources\\static\\images\\movie\\MP56.jpg");
+		MockMultipartFile multipartFile = new MockMultipartFile("MP56", "MP56.jpg", "image/jpg", fis);
+		assertDoesNotThrow(() -> movieService.updateMovie(movieDto, multipartFile));
 	}
 }
