@@ -1,0 +1,19 @@
+{
+	"id": 1,
+	"roomId": "PC16",
+	"languageOfMovieId": 10,
+	"dimensionId": 5,
+	"showDate": "2023-09-16",
+	"startTime": "16:00:00",
+	"price": 50000.0,
+	"movieId": "MP07",
+	"roomName": "Phòng 6",
+	"dimensionName": "Full HD",
+	"branchId": "cn2",
+	"branchName": "Bình Tân",
+	"branchAddress": "90, Phạm Ngũ Lão, quận Bình Tân",
+	"movieName": "CÙ LAO XÁC SỐNG",
+	"languageName": "Tiếng Nhật - Phụ đề tiếng Việt",
+	"movies": [],
+	"ticketNumber": 0
+}

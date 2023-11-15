@@ -40,7 +40,7 @@ public class ShowTimeDto extends ShowTime {
 	 * DimensionName of ShowTimeDto
 	 */
 
-	@Column(name = "dimensionname")
+	@Column(name = "dimension")
 	private String dimensionName;
 
 	/*
@@ -65,7 +65,7 @@ public class ShowTimeDto extends ShowTime {
 	/*
 	 * movieName of ShowTimeDto
 	 */
-	@Column(name = "movieName")
+	@Column(name = "movie")
 	private String movieName;
 	/*
 	 * languageName of ShowTimeDto
@@ -78,5 +78,4 @@ public class ShowTimeDto extends ShowTime {
 
 	@Column(name = "ticketNumber")
 	private int ticketNumber;
-
 }
