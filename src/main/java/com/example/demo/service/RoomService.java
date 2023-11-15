@@ -12,16 +12,14 @@ import com.example.demo.dto.RoomDto;
 import com.example.demo.exception.InvalidRequestParameterException;
 
 @Service
-public class RoomService implements BaseService<RoomDto, String> {
+public class RoomService {
 	@Autowired
 	RoomDao roomDao;
 
-	@Override
 	public List<RoomDto> findAll() {
 		return roomDao.findAll();
 	}
 
-	@Override
 	public Optional<RoomDto> findById(String id) throws InvalidRequestParameterException {
 		return Optional.of(roomDao.findById(id))
 				.orElseThrow(() -> new InvalidRequestParameterException("Room", RequestParameterEnum.NOT_FOUND));
