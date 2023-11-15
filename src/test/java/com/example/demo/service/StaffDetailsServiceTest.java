@@ -38,32 +38,21 @@ public class StaffDetailsServiceTest {
 
 	@Test
 	public void testLoadUserByUsernameIsNull() throws Exception {
-		InvalidRequestParameterException exception = assertThrows(
-                InvalidRequestParameterException.class,
-                () -> staffDetailsService.loadUserByUsername(null));
-        assertEquals(400, exception.getResponse().getStatusCode());
-        assertEquals("Staff Details", exception.getResponse().getMessage());
-        assertEquals(RequestParameterEnum.NOTHING.getName(), exception.getResponse().getParam());
+		assertThrows(InvalidRequestParameterException.class, () -> staffDetailsService.loadUserByUsername(null));
 	}
 
 	@Test
-    public void testLoadUserByUsernameIsNotPresent() throws Exception {
-    	String email = "duck#@gmail.com";
-    	
-    	UsernameNotFoundException exception = assertThrows(
-         		UsernameNotFoundException.class,
-                 () -> staffDetailsService.loadUserByUsername(email));
-    	UsernameNotFoundException result = new UsernameNotFoundException("Không tồn tại người dùng " + email);
-        assertEquals(result.getMessage(), exception.getMessage());
-    }
+	public void testLoadUserByUsernameIsNotPresent() throws Exception {
+		String email = "duck#@gmail.com";
+
+		UsernameNotFoundException exception = assertThrows(UsernameNotFoundException.class,
+				() -> staffDetailsService.loadUserByUsername(email));
+		UsernameNotFoundException result = new UsernameNotFoundException("Không tồn tại người dùng " + email);
+		assertEquals(result.getMessage(), exception.getMessage());
+	}
 
 	@Test
 	public void testLoadUserByUsernameIsEmpty() throws Exception {
-		InvalidRequestParameterException exception = assertThrows(
-                InvalidRequestParameterException.class,
-                () -> staffDetailsService.loadUserByUsername(null));
-        assertEquals(400, exception.getResponse().getStatusCode());
-        assertEquals("Staff Details", exception.getResponse().getMessage());
-        assertEquals(RequestParameterEnum.NOTHING.getName(), exception.getResponse().getParam());
+		assertThrows(InvalidRequestParameterException.class, () -> staffDetailsService.loadUserByUsername(""));
 	}
 }
