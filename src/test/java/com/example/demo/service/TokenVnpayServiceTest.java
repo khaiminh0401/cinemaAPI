@@ -18,6 +18,7 @@ import com.example.demo.exception.InvalidRequestParameterException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @SpringBootTest(classes = MovieTestApplication.class)
+@TestExecutionListeners({ DependencyInjectionTestExecutionListener.class, DbUnitTestExecutionListener.class })
 @AutoConfigureMockMvc
 public class TokenVnpayServiceTest {
     @Autowired
@@ -30,6 +31,8 @@ public class TokenVnpayServiceTest {
     private ObjectMapper objectMapper;
 
     @Test
+    	@DatabaseSetup(value = "/db/tokenvnpay.xml")
+	@ExpectedDatabase(value = "/expecteddb/tokenvnpay.xml", assertionMode = DatabaseAssertionMode.NON_STRICT_UNORDERED)
     public void insert() throws Exception {
         TokenVnpay tokenVnpay = GsonService.toObject(gsonService.getValueInput(this.getClass().toString(), "insert"),
                 TokenVnpay.class);
