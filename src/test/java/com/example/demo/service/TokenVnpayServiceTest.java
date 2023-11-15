@@ -9,13 +9,18 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.TestExecutionListeners;
+import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 
 import com.example.demo.MovieTestApplication;
-import com.example.demo.admin.controller.enums.RequestParameterEnum;
 import com.example.demo.config.GsonService;
 import com.example.demo.entity.TokenVnpay;
 import com.example.demo.exception.InvalidRequestParameterException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.springtestdbunit.DbUnitTestExecutionListener;
+import com.github.springtestdbunit.annotation.DatabaseSetup;
+import com.github.springtestdbunit.annotation.ExpectedDatabase;
+import com.github.springtestdbunit.assertion.DatabaseAssertionMode;
 
 @SpringBootTest(classes = MovieTestApplication.class)
 @TestExecutionListeners({ DependencyInjectionTestExecutionListener.class, DbUnitTestExecutionListener.class })
@@ -31,10 +36,10 @@ public class TokenVnpayServiceTest {
     private ObjectMapper objectMapper;
 
     @Test
-    	@DatabaseSetup(value = "/db/tokenvnpay.xml")
-	@ExpectedDatabase(value = "/expecteddb/tokenvnpay.xml", assertionMode = DatabaseAssertionMode.NON_STRICT_UNORDERED)
+    @DatabaseSetup(value = "/db/tokenvnpay.xml")
+    @ExpectedDatabase(value = "/expecteddb/tokenvnpay.xml", assertionMode = DatabaseAssertionMode.NON_STRICT_UNORDERED)
     public void insert() throws Exception {
-        TokenVnpay tokenVnpay = GsonService.toObject(gsonService.getValueInput(this.getClass().toString(), "insert"),
+        TokenVnpay tokenVnpay = GsonService.toObject(gsonService.getValueInput(this.getClass().toString(), Thread.currentThread().getStackTrace()[1].getMethodName()),
                 TokenVnpay.class);
         String result = tokenVnpayService.insert(Optional.of(tokenVnpay));
         String expect = "RS_02";
