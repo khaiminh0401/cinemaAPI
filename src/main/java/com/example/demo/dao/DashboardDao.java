@@ -33,5 +33,4 @@ public interface DashboardDao {
 	
 	@Select
 	List<Dashboard> statisticsTotalShowtimeOfYear(int year, String branchId);
-
 }
