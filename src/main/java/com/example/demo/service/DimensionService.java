@@ -12,11 +12,10 @@ import com.example.demo.entity.Dimension;
 import com.example.demo.exception.InvalidRequestParameterException;
 
 @Service
-public class DimensionService implements BaseService<Dimension, Integer> {
+public class DimensionService {
     @Autowired
     DimensionDao dimensionDao;
 
-    @Override
     public List<Dimension> findAll() {
         return dimensionDao.findAll();
     }
