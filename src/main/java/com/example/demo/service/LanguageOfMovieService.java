@@ -26,6 +26,5 @@ public class LanguageOfMovieService {
 			throw new InvalidRequestParameterException("LanguageOfMovie", RequestParameterEnum.NOT_FOUND);
 		}
 		return list;
-
     }
 }
