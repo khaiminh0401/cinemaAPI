@@ -31,7 +31,6 @@ public class DimensionServiceTest {
     @Test
     public void testFindAll() throws JsonProcessingException {
         String expect = gsonService.getValueExpect(this.getClass().toString(), "findAll");
-        System.out.println(expect);
         String result = objectMapper.writeValueAsString(dimensionService.findAll());
         assertEquals(expect, result);
     }
