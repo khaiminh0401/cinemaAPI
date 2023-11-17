@@ -21,8 +21,9 @@ public class DimensionService {
     }
 
     @Override
-    public Optional<Dimension> findById(Integer id)throws InvalidRequestParameterException  {
-        return Optional.of(dimensionDao.findById(id).orElseThrow(()->new InvalidRequestParameterException("Dimension",RequestParameterEnum.NOT_FOUND)));
+    public Optional<Dimension> findById(Integer id) throws InvalidRequestParameterException {
+        return Optional.of(dimensionDao.findById(id)
+                .orElseThrow(() -> new InvalidRequestParameterException("Dimension", RequestParameterEnum.NOT_FOUND)));
     }
 
 }
