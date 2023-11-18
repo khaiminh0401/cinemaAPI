@@ -34,5 +34,4 @@ public class Dimension {
 	 */
 	@Column
 	private double pricesurcharge;
-
 }
