@@ -17,7 +17,7 @@ import com.example.demo.service.DimensionService;
 @CrossOrigin("*")
 public class DimensionController {
     @Autowired
-    private DimensionService dimensionService;
+    DimensionService dimensionService;
 
     @GetMapping({ "/", "" })
     public ResponseEntity<?> findAll() {

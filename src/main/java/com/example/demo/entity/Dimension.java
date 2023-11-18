@@ -18,7 +18,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class Dimension {
-
 	/*
 	 * id of dimension
 	 */
