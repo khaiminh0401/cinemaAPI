@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <bill id="8" totalprice="0.0" exportdate="2023-10-01 06:25:38.0" exportstatus="1" rate="5.0" review="&amp;lt;p&amp;gt;08 nha&amp;lt;/p&amp;gt;" qrcode="null" customerid="18"/>
+    <bill id="9" totalprice="924000.0" exportdate="2023-10-01 10:03:48.617369000" exportstatus="1" rate="5.0" review="&amp;lt;p&amp;gt;09 ne&amp;lt;/p&amp;gt;" qrcode="null" customerid="18"/>
+    <bill id="10" totalprice="9156000.0" exportdate="2023-10-01 06:10:38.0" exportstatus="1" rate="5.0" review="&amp;lt;p&amp;gt;Uy tín, chất lượng&amp;lt;/p&amp;gt;" qrcode="null" customerid="18"/>
+    <bill id="11" totalprice="588000.0" exportdate="2023-11-01 14:15:38.0" exportstatus="1" rate="4.0" review="null" qrcode="null" customerid="null"/>
+    <bill id="12" totalprice="588000.0" exportdate="2023-11-01 14:32:42.0" exportstatus="1" rate="4.0" review="null" qrcode="null" customerid="null"/>
+    <bill id="13" totalprice="672000.0" exportdate="2023-10-02 15:45:42.0" exportstatus="1" rate="4.0" review="null" qrcode="null" customerid="null"/>
+    <bill id="14" totalprice="840000.0" exportdate="2023-08-01 15:25:42.0" exportstatus="1" rate="4.0" review="null" qrcode="null" customerid="null"/>
+    <bill id="15" totalprice="924000.0" exportdate="2023-07-01 16:58:12.0" exportstatus="1" rate="4.0" review="null" qrcode="null" customerid="null"/>
+    <bill id="16" totalprice="1092000.0" exportdate="2023-06-01 17:05:48.0" exportstatus="1" rate="4.0" review="null" qrcode="null" customerid="null"/>
+    <bill id="17" totalprice="588000.0" exportdate="2023-05-01 08:29:48.0" exportstatus="1" rate="5.0" review="&amp;lt;p&amp;gt;tuyệt vời&amp;lt;/p&amp;gt;" qrcode="null" customerid="null"/>
+    <bill id="18" totalprice="420000.0" exportdate="2023-05-01 10:51:20.0" exportstatus="1" rate="4.0" review="null" qrcode="null" customerid="null"/>
+    <bill id="19" totalprice="756000.0" exportdate="2023-04-01 18:55:20.0" exportstatus="1" rate="4.0" review="null" qrcode="null" customerid="null"/>
+    <bill id="20" totalprice="672000.0" exportdate="2023-04-01 18:41:20.0" exportstatus="1" rate="3.0" review="null" qrcode="null" customerid="null"/>
+    <bill id="21" totalprice="588000.0" exportdate="2023-04-01 18:07:20.0" exportstatus="1" rate="4.0" review="null" qrcode="null" customerid="null"/>
+    <bill id="22" totalprice="1512000.0" exportdate="2023-03-01 18:33:20.0" exportstatus="1" rate="3.0" review="null" qrcode="null" customerid="null"/>
+    <bill id="23" totalprice="0.0" exportdate="2023-03-01 18:08:20.0" exportstatus="1" rate="5.0" review="null" qrcode="null" customerid="null"/>
+    <bill id="24" totalprice="0.0" exportdate="2023-03-01 18:36:20.0" exportstatus="1" rate="5.0" review="null" qrcode="null" customerid="null"/>
+    <bill id="25" totalprice="504000.0" exportdate="2023-02-01 15:06:00.0" exportstatus="1" rate="4.0" review="null" qrcode="null" customerid="null"/>
+    <bill id="27" totalprice="420000.0" exportdate="2023-02-01 14:16:07.0" exportstatus="1" rate="3.0" review="null" qrcode="null" customerid="null"/>
+    <bill id="28" totalprice="2184000.0" exportdate="2023-01-01 14:56:07.0" exportstatus="1" rate="3.0" review="null" qrcode="null" customerid="null"/>
+    <bill id="29" totalprice="0.0" exportdate="2023-01-01 13:41:20.0" exportstatus="1" rate="5.0" review="null" qrcode="null" customerid="null"/>
+    <bill id="30" totalprice="0.0" exportdate="2023-01-01 14:41:20.0" exportstatus="1" rate="5.0" review="null" qrcode="null" customerid="null"/>
+    <bill id="32" totalprice="162750.0" exportdate="2023-11-01 17:12:13.0" exportstatus="1" rate="3.0" review="null" qrcode="null" customerid="null"/>
+    <bill id="33" totalprice="70000.0" exportdate="2023-10-01 10:03:48.617369000" exportstatus="0" rate="0.0" review="null" qrcode="null" customerid="12"/>
+    <bill id="34" totalprice="80000.0" exportdate="2023-10-01 10:03:48.617369000" exportstatus="0" rate="0.0" review="null" qrcode="null" customerid="12"/>
+    <bill id="35" totalprice="null" exportdate="2023-11-15 23:37:37.808873000" exportstatus="1" rate="0.0" review="null" qrcode="null" customerid="null"/>
+</dataset>
