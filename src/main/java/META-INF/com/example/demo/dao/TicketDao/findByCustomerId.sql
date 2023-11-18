@@ -9,7 +9,8 @@ SELECT
 	vat,
 	exportstatus
 FROM ticket
-JOIN customer ON ticket.customerid = customer.id
+JOIN bill ON bill.id = ticket.billid
+JOIN customer ON bill.customerid = customer.id
 JOIN showtime ON showtime.id = ticket.showtimeid
 JOIN seatdetails ON seatdetails.id = showtime.id
 JOIN seat ON seat.id = seatdetails.seatid

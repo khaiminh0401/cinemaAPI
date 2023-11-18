@@ -1,0 +1,21 @@
+[
+	{
+		"id": 1461,
+		"customerId": null,
+		"seatDetailsId": null,
+		"showtimeId": null,
+		"totalPrice": 10000.0,
+		"createDate": null,
+		"vat": 0.5,
+		"billId": null,
+		"customerName": "Phạm Ngọc Khách Đoan",
+		"showdate": "2023-09-15",
+		"startTime": "17:00:00",
+		"seat": "A2",
+		"seatPrice": 0.0,
+		"seatPriceCommon": 20000.0,
+		"seatType": "Thường",
+		"seatTypeSurchage": 0.0,
+		"movieName": "CÙ LAO XÁC SỐNG"
+	}
+]
