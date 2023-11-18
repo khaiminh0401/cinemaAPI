@@ -11,7 +11,6 @@ import com.example.demo.admin.controller.enums.RequestStatusEnum;
 import com.example.demo.dao.ToppingDao;
 import com.example.demo.dao.ToppingDetailsDao;
 import com.example.demo.dto.ToppingDto;
-import com.example.demo.entity.Ticket;
 import com.example.demo.entity.ToppingDetails;
 import com.example.demo.entity.ToppingOfBranch;
 import com.example.demo.exception.InvalidRequestParameterException;
@@ -24,12 +23,8 @@ public class ToppingService {
 
 	@Autowired
 	ToppingDetailsDao toppingDetailsDao;
-
-	public ToppingOfBranch findToppingOfBranchById(Integer id) throws InvalidRequestParameterException {
-		return toppingDao.findToppingOfBranchById(id);
-	}
-
-	public List<ToppingDto> findByBranchid(Optional<String> branchid) throws InvalidRequestParameterException {
+	
+	public List<ToppingDto> findByBranchid(Optional<String> branchid) throws InvalidRequestParameterException{
 		if (branchid.isEmpty())
 			throw new InvalidRequestParameterException("Topping", RequestParameterEnum.NOTHING);
 		return toppingDao.findByBranchId(branchid.get());
@@ -43,11 +38,4 @@ public class ToppingService {
 		toppingDetailsDao.insert(toppingDetails.get());
 		return RequestStatusEnum.SUCCESS.getResponse();
 	}
-
-	public String updateToppingOfBranchAfterOrdered(Integer id, int quantity) throws InvalidRequestParameterException {
-		if (quantity != 0)
-			toppingDao.updateToppingOfBranchAfterOrdered(id, quantity);
-		return RequestStatusEnum.SUCCESS.getResponse();
-	}
-
 }

@@ -13,7 +13,7 @@ import org.seasar.doma.Table;
 @Data
 @NoArgsConstructor
 public class ToppingOfBranch {
-    @Id
+	@Id
     @Column(name = "id")
     private Integer id;
 

@@ -15,11 +15,10 @@ import com.example.demo.entity.ToppingOfBranch;
 public interface ToppingDao {
 	@Select
 	ToppingOfBranch findToppingOfBranchById(Integer id);
-
+	
 	@Select
 	List<ToppingDto> findByBranchId(String branchid);
-
+	
 	@Update(sqlFile = true)
 	int updateToppingOfBranchAfterOrdered(Integer id, int quantity);
-
 }
