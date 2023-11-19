@@ -32,18 +32,18 @@ public class StaffDetailsServiceTest {
 	public void testLoadUserByUsername() throws JsonProcessingException {
 		gsonService = new GsonService();
 		String expect = gsonService.getValueExpect(this.getClass().toString(), "loadUserByUsername");
-		String result = objectMapper.writeValueAsString(staffDetailsService.loadUserByUsername("duc@gmail.com"));
+		String result = objectMapper.writeValueAsString(staffDetailsService.loadUserByUsername("john.doe@example.com"));
 		assertEquals(expect, result);
 	}
 
 	@Test
 	public void testLoadUserByUsernameIsNull() throws Exception {
-		assertThrows(InvalidRequestParameterException.class, () -> staffDetailsService.loadUserByUsername(null));
+		assertThrows(UsernameNotFoundException.class, () -> staffDetailsService.loadUserByUsername(null));
 	}
 
 	@Test
 	public void testLoadUserByUsernameIsNotPresent() throws Exception {
-		String email = "duck#@gmail.com";
+		String email = "john.doe#@example.com";
 
 		UsernameNotFoundException exception = assertThrows(UsernameNotFoundException.class,
 				() -> staffDetailsService.loadUserByUsername(email));
@@ -53,6 +53,6 @@ public class StaffDetailsServiceTest {
 
 	@Test
 	public void testLoadUserByUsernameIsEmpty() throws Exception {
-		assertThrows(InvalidRequestParameterException.class, () -> staffDetailsService.loadUserByUsername(""));
+		assertThrows(UsernameNotFoundException.class, () -> staffDetailsService.loadUserByUsername(""));
 	}
 }

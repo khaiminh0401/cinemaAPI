@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.example.demo.dao.StaffDao;
 import com.example.demo.entity.Staff;
 import com.example.demo.enums.Role;
+import com.example.demo.exception.InvalidRequestParameterException;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -28,6 +29,9 @@ public class StaffDetailsService implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+		if (email == null) throw new UsernameNotFoundException("Email is null");
+		if (email.equals("")) throw new UsernameNotFoundException("Email is empty");
+		
 		Optional<Staff> staff = staffDao.findByEmail(email);
 
 		if (staff.isEmpty()) {

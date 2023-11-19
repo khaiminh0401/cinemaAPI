@@ -1,6 +1,6 @@
 {
-	"password":"$2a$12$Doi7.oqlTcJM5GImCWksLePiEVW.UZ1aCXUiyKbiT0jCwNSMXrM5W",
-	"username":"duc@gmail.com",
+	"password":"$2a$10$cKWg2sG7pL5zuUi6NxoxYeDfhfRSkZ1kRcQQhDGc.igsPIUieV7TO",
+	"username":"john.doe@example.com",
 	"authorities":[{"authority":"ROLE_EMPLOYEE"}],
 	"accountNonExpired":true,
 	"accountNonLocked":true,
