@@ -20,22 +20,31 @@ public class ToppingService {
 
 	@Autowired
 	ToppingDao toppingDao;
-
+	
 	@Autowired
 	ToppingDetailsDao toppingDetailsDao;
+	
+	public ToppingOfBranch findToppingOfBranchById(Integer id) throws InvalidRequestParameterException{
+		return toppingDao.findToppingOfBranchById(id);
+	}
+	
 	
 	public List<ToppingDto> findByBranchid(Optional<String> branchid) throws InvalidRequestParameterException{
 		if (branchid.isEmpty())
 			throw new InvalidRequestParameterException("Topping", RequestParameterEnum.NOTHING);
 		return toppingDao.findByBranchId(branchid.get());
-
+		
 	}
-
-	public String orderTopping(Optional<ToppingDetails> toppingDetails) throws InvalidRequestParameterException {
-		if (toppingDetails.isEmpty())
-			throw new InvalidRequestParameterException("Topping Details", RequestParameterEnum.NOTHING);
-
+	
+	public String orderTopping(Optional<ToppingDetails> toppingDetails) throws InvalidRequestParameterException{
+		if (toppingDetails.isEmpty()) throw new InvalidRequestParameterException("Topping Details", RequestParameterEnum.NOTHING);
+		
 		toppingDetailsDao.insert(toppingDetails.get());
+		return RequestStatusEnum.SUCCESS.getResponse();
+	}
+	
+	public String updateToppingOfBranchAfterOrdered(Integer id, int quantity) throws InvalidRequestParameterException {
+		if (quantity != 0) toppingDao.updateToppingOfBranchAfterOrdered(id, quantity);
 		return RequestStatusEnum.SUCCESS.getResponse();
 	}
 }
