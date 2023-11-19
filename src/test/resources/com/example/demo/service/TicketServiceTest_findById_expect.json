@@ -1,9 +1,9 @@
 {
-	"password":"$2a$12$Doi7.oqlTcJM5GImCWksLePiEVW.UZ1aCXUiyKbiT0jCwNSMXrM5W",
-	"username":"duc@gmail.com",
-	"authorities":[{"authority":"ROLE_EMPLOYEE"}],
-	"accountNonExpired":true,
-	"accountNonLocked":true,
-	"credentialsNonExpired":true,
-	"enabled":true
+	"id": 1,
+	"seatDetailsId": 1,
+	"showtimeId": 1,
+	"totalPrice": 70000.0,
+	"createDate": "2023-11-29",
+	"vat": 0.05,
+	"billId": 12
 }

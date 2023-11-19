@@ -3,6 +3,7 @@ package com.example.demo.service;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import java.sql.Date;
 import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
@@ -48,47 +49,30 @@ public class TicketServiceTest {
 	@Test
 	public void testFindById() throws JsonProcessingException, InvalidRequestParameterException {
 		String expect = gsonService.getValueExpect(this.getClass().toString(), "findById");
-		String result = objectMapper.writeValueAsString(ticketService.findById(120));
+		String result = objectMapper.writeValueAsString(ticketService.findById(Optional.of(1)));
 		assertEquals(expect, result);
 	}
 
 	@Test
 	public void testFindByIdIsNull() throws Exception {
-		assertThrows(InvalidRequestParameterException.class, () -> ticketService.findById(null));
+		assertThrows(NullPointerException.class, () -> ticketService.findById(null));
 	}
 
 	@Test
 	public void testFindByIdIsNotPresent() throws Exception {
-		assertThrows(InvalidRequestParameterException.class, () -> ticketService.findById(-1));
-	}
-
-	@Test
-	public void testFindByCustomerId() throws JsonProcessingException, InvalidRequestParameterException {
-		String expect = gsonService.getValueExpect(this.getClass().toString(), "findByCustomerId");
-		String result = objectMapper.writeValueAsString(ticketService.findByCustomerId(Optional.of(1)));
-		assertEquals(expect, result);
-	}
-
-	@Test
-	public void testFindByCustomerIdIsNull() throws Exception {
-		assertThrows(InvalidRequestParameterException.class, () -> ticketService.findByCustomerId(null));
-	}
-
-	@Test
-	public void testFindByCustomerIdIsNotPresent() throws Exception {
-		assertThrows(InvalidRequestParameterException.class, () -> ticketService.findByCustomerId(Optional.of(-1)));
+		assertThrows(InvalidRequestParameterException.class, () -> ticketService.findById(Optional.of(-1)));
 	}
 
 	@Test
 	public void testFindByBillId() throws JsonProcessingException, InvalidRequestParameterException {
 		String expect = gsonService.getValueExpect(this.getClass().toString(), "findByBillId");
-		String result = objectMapper.writeValueAsString(ticketService.findByBillId(Optional.of(1241)));
+		String result = objectMapper.writeValueAsString(ticketService.findByBillId(Optional.of(12)));
 		assertEquals(expect, result);
 	}
 
 	@Test
 	public void testFindByBillIdIsNull() throws Exception {
-		assertThrows(InvalidRequestParameterException.class, () -> ticketService.findByBillId(null));
+		assertThrows(NullPointerException.class, () -> ticketService.findByBillId(null));
 	}
 
 	@Test
@@ -96,18 +80,19 @@ public class TicketServiceTest {
 		assertThrows(InvalidRequestParameterException.class, () -> ticketService.findByBillId(Optional.of(-1)));
 	}
 
+	@SuppressWarnings("deprecation")
 	@DatabaseSetup(value = "/db/TicketServiceTest_testInsertTicketSuccess_db.xml")
 	@ExpectedDatabase(value = "/expecteddb/TicketServiceTest_testInsertTicketSuccess_db_expect.xml", assertionMode = DatabaseAssertionMode.NON_STRICT_UNORDERED)
     @Test
 	public void testInsertTicketSuccess() throws InvalidRequestParameterException {
 		ticket = new Ticket();
-		ticket.setId(1470);
-		ticket.setCustomerId(1);
+		ticket.setId(2);
 		ticket.setSeatDetailsId(1);
 		ticket.setShowtimeId(1);
 		ticket.setVat(0.05);
-		ticket.setTotalPrice(10000);
-		ticket.setBillId(1);
+		ticket.setTotalPrice(70000.00000000000000000);
+		ticket.setCreateDate(new Date(123, 10, 29));
+		ticket.setBillId(12);
 		ticketService.insert(Optional.of(ticket));
 	}
 }
