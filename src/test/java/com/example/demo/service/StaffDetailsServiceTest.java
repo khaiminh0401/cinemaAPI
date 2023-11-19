@@ -3,6 +3,8 @@ package com.example.demo.service;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import java.security.InvalidParameterException;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -37,8 +39,8 @@ public class StaffDetailsServiceTest {
 	}
 
 	@Test
-	public void testLoadUserByUsernameIsNull() throws Exception {
-		assertThrows(UsernameNotFoundException.class, () -> staffDetailsService.loadUserByUsername(null));
+	public void testLoadUserByUsernameIsNull() throws InvalidParameterException {
+		assertThrows(InvalidParameterException.class, () -> staffDetailsService.loadUserByUsername(null));
 	}
 
 	@Test
@@ -52,7 +54,7 @@ public class StaffDetailsServiceTest {
 	}
 
 	@Test
-	public void testLoadUserByUsernameIsEmpty() throws Exception {
-		assertThrows(UsernameNotFoundException.class, () -> staffDetailsService.loadUserByUsername(""));
+	public void testLoadUserByUsernameIsEmpty() throws InvalidParameterException {
+		assertThrows(InvalidParameterException.class, () -> staffDetailsService.loadUserByUsername(""));
 	}
 }

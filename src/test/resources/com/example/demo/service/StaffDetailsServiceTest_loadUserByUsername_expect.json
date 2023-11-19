@@ -1,9 +1,13 @@
 {
-	"password":"$2a$10$cKWg2sG7pL5zuUi6NxoxYeDfhfRSkZ1kRcQQhDGc.igsPIUieV7TO",
-	"username":"john.doe@example.com",
-	"authorities":[{"authority":"ROLE_EMPLOYEE"}],
-	"accountNonExpired":true,
-	"accountNonLocked":true,
-	"credentialsNonExpired":true,
-	"enabled":true
+	"password": "$2a$12$RmcHJOHkuNVYSYYusgJ.EebZ95UYufwHCeYgbywu9cEerEvFFRc7q",
+	"username": "john.doe@example.com",
+	"authorities": [
+		{
+			"authority": "ROLE_EMPLOYEE"
+		}
+	],
+	"accountNonExpired": true,
+	"accountNonLocked": true,
+	"credentialsNonExpired": true,
+	"enabled": true
 }

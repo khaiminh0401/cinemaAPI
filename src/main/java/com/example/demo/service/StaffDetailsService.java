@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import java.security.InvalidParameterException;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,8 +30,8 @@ public class StaffDetailsService implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-		if (email == null) throw new UsernameNotFoundException("Email is null");
-		if (email.equals("")) throw new UsernameNotFoundException("Email is empty");
+		if (email == null) throw new InvalidParameterException("Email is null");
+		if (email.equals("")) throw new InvalidParameterException("Email is empty");
 		
 		Optional<Staff> staff = staffDao.findByEmail(email);
 
