@@ -4,7 +4,6 @@ import java.util.Collections;
 
 import org.springframework.stereotype.Service;
 
-import com.example.demo.exception.InvalidRequestParameterException;
 import com.pusher.rest.Pusher;
 
 @Service
@@ -16,8 +15,8 @@ public class PusherService {
     static final String CLUSTER = "ap1";
     private final Pusher p = new Pusher(APP_ID, KEY, SECRET);
     
-    public void realTime(String channel, String event, String message) throws Exception {
-    		p.setCluster("ap1");
-    		p.trigger(channel, event, Collections.singletonMap("message", message));
+    public void realtime(String channel, String event, String message) {
+		p.setCluster("ap1");
+		p.trigger(channel, event, Collections.singletonMap("message", message));
     }
 }
