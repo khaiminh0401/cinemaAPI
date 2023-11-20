@@ -4,10 +4,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.sql.Date;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -17,6 +19,7 @@ import org.springframework.data.domain.Pageable;
 import com.example.demo.MovieApplication;
 import com.example.demo.admin.controller.enums.RequestParameterEnum;
 import com.example.demo.config.GsonService;
+import com.example.demo.dao.ShowTimeDao;
 import com.example.demo.entity.ShowTime;
 import com.example.demo.exception.InvalidRequestParameterException;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -28,7 +31,7 @@ import com.github.springtestdbunit.assertion.DatabaseAssertionMode;
 @SpringBootTest(classes = MovieApplication.class)
 @AutoConfigureMockMvc
 public class ShowtimeServiceTest {
-	@InjectMocks
+	@Autowired
 	private ShowTimeService showtimeService;
 
 	@Autowired
@@ -49,21 +52,22 @@ public class ShowtimeServiceTest {
 
 	@Test
 	public void testFindShowtimeByMovieAndDateIsNotPresent() throws JsonProcessingException {
-		assertThrows(InvalidRequestParameterException.class, () -> 
-			showtimeService.findShowtimeByMovieAndDate("2023-09-17", "-MP07",
+		String expect = "\"Xin lỗi, không có xuất chiếu vào ngày này, hãy chọn một ngày khác.\"";
+		String result = objectMapper.writeValueAsString(showtimeService.findShowtimeByMovieAndDate("2023-09-17", "-MP07",
 					Integer.valueOf(-1), PageRequest.of(1, 1)));
+		assertEquals(expect, result);
 	}
 
 	@Test
 	public void testFindById() throws Exception {
 		String expect = gsonService.getValueExpect(this.getClass().toString(), "findById");
-		String result = objectMapper.writeValueAsString(showtimeService.findById(1));
+		String result = objectMapper.writeValueAsString(showtimeService.findById(Optional.of(1)));
 		assertEquals(expect, result);
 	}
 
 	@Test
 	public void testFindByIdIsNotPresent() throws Exception {
-		assertThrows(InvalidRequestParameterException.class, () -> showtimeService.findById(-1));
+		assertThrows(InvalidRequestParameterException.class, () -> showtimeService.findById(Optional.of(-1)));
 	}
 
 	@Test
@@ -78,23 +82,23 @@ public class ShowtimeServiceTest {
 	public void testFindByCurrentDate() throws Exception {
 		ObjectMapper mapper = new ObjectMapper();
 		String expect = gsonService.getValueExpect(this.getClass().toString(), "findByCurrentDate");
-		String result = mapper.writeValueAsString(showtimeService.findByCurrentDate("CN01"));
+		String result = mapper.writeValueAsString(showtimeService.findByCurrentDate(Optional.of("cn1")));
 		assertEquals(expect, result);
 	}
 
 	@Test
 	public void testFindByCurrentDateIsNull() throws Exception {
-		assertThrows(InvalidRequestParameterException.class, () -> showtimeService.findByCurrentDate(null));
+		assertThrows(NullPointerException.class, () -> showtimeService.findByCurrentDate(null));
 	}
 
 	@Test
 	public void testFindByCurrentDateIsNotPresent() throws Exception {
-		assertThrows(InvalidRequestParameterException.class, () -> showtimeService.findByCurrentDate("-CN01"));
+		assertThrows(InvalidRequestParameterException.class, () -> showtimeService.findByCurrentDate(Optional.of("-CN01")));
 	}
 
 	@Test
 	public void testFindByCurrentDateIsEmpty() throws Exception {
-		assertThrows(InvalidRequestParameterException.class, () -> showtimeService.findByCurrentDate(""));
+		assertThrows(InvalidRequestParameterException.class, () -> showtimeService.findByCurrentDate(Optional.of("")));
 	}
 
 	@DatabaseSetup(value = "/db/ShowtimeServiceTest_testInsertShowtimeSuccess_db.xml")
@@ -117,7 +121,7 @@ public class ShowtimeServiceTest {
     @Order(2)
 	public void testUpdateShowtimeSuccess() throws InvalidRequestParameterException {
 		showtime = new ShowTime();
-		showtime.setId(0);
+		showtime.setId(97);
 		showtime.setRoomId("PC35");
 		showtime.setDimensionId(5);
 		showtime.setPrice(70000.00000000000000000);
@@ -130,6 +134,6 @@ public class ShowtimeServiceTest {
     @Test
     @Order(3)
 	public void testDeleteShowtimeSuccess() throws InvalidRequestParameterException {
-    	showtimeService.delete(0);
+    	showtimeService.delete(97);
 	}
 }

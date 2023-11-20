@@ -1,5 +1,6 @@
 package com.example.demo.domain;
 
+import java.sql.Time;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,13 +16,13 @@ import lombok.NoArgsConstructor;
 @Data
 public class ShowTimeHasMovies{
     private int id;
-    private LocalTime starttime;
+    private Time starttime;
     private String movie;
     private String movieid;
     private List<String> movies = new ArrayList<>();
     private int ticketNumber;
 
-    public ShowTimeHasMovies(int id,LocalTime starttime,String movie, String movieid, int ticketNumber){
+    public ShowTimeHasMovies(int id,Time starttime,String movie, String movieid, int ticketNumber){
         this.id = id;
         this.starttime = starttime;
         this.movie = movie;

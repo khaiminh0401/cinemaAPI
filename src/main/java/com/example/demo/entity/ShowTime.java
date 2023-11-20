@@ -2,6 +2,7 @@ package com.example.demo.entity;
 
 import java.time.LocalTime;
 import java.sql.Date;
+import java.sql.Time;
 
 import org.seasar.doma.Column;
 import org.seasar.doma.Entity;
@@ -54,7 +55,7 @@ public class ShowTime {
 	 * startTime of showtime
 	 */
 	@Column
-	private LocalTime startTime;
+	private Time startTime;
 	/*
 	 * price of showtime
 	 */

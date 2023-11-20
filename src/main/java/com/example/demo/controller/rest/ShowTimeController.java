@@ -1,4 +1,6 @@
 package com.example.demo.controller.rest;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
@@ -28,7 +30,7 @@ public class ShowTimeController {
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<?> findById(@PathVariable("id") int id) throws InvalidRequestParameterException {
+	public ResponseEntity<?> findById(@PathVariable("id") Optional<Integer> id) throws InvalidRequestParameterException {
 		return ResponseEntity.ok(showtimeService.findById(id));
 	}
 
@@ -55,7 +57,7 @@ public class ShowTimeController {
 		return ResponseEntity.ok(showtimeService.update(showTime));
 	}
 	@GetMapping("/cd")
-	public ResponseEntity<?> cd (@RequestParam("branchid") String branchid) {
+	public ResponseEntity<?> cd (@RequestParam("branchid") Optional<String> branchid) throws InvalidRequestParameterException {
 		return ResponseEntity.ok(showtimeService.findByCurrentDate(branchid));
 	}
 }

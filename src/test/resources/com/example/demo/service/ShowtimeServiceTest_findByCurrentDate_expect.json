@@ -1,1 +1,50 @@
-[]
+[
+    {
+        "id": 188,
+        "starttime": "00:00:00",
+        "movie": "CÙ LAO XÁC SỐNG - Tiếng Nhật - Phụ đề tiếng Việt",
+        "movieid": "MP07",
+        "movies": [],
+        "ticketNumber": 0
+    },
+    {
+        "id": 183,
+        "starttime": "14:00:00",
+        "movie": "CÙ LAO XÁC SỐNG - Tiếng Nhật - Phụ đề tiếng Việt",
+        "movieid": "MP07",
+        "movies": [],
+        "ticketNumber": 0
+    },
+    {
+        "id": 184,
+        "starttime": "16:00:00",
+        "movie": "CÙ LAO XÁC SỐNG - Tiếng Nhật - Phụ đề tiếng Việt",
+        "movieid": "MP07",
+        "movies": [],
+        "ticketNumber": 0
+    },
+    {
+        "id": 185,
+        "starttime": "18:00:00",
+        "movie": "CÙ LAO XÁC SỐNG - Tiếng Nhật - Phụ đề tiếng Việt",
+        "movieid": "MP07",
+        "movies": [],
+        "ticketNumber": 0
+    },
+    {
+        "id": 186,
+        "starttime": "20:00:00",
+        "movie": "CÙ LAO XÁC SỐNG - Tiếng Nhật - Phụ đề tiếng Việt",
+        "movieid": "MP07",
+        "movies": [],
+        "ticketNumber": 0
+    },
+    {
+        "id": 187,
+        "starttime": "22:00:00",
+        "movie": "CÙ LAO XÁC SỐNG - Tiếng Nhật - Phụ đề tiếng Việt",
+        "movieid": "MP07",
+        "movies": [],
+        "ticketNumber": 0
+    }
+]

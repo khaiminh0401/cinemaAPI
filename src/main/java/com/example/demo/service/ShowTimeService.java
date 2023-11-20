@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageImpl;
@@ -21,7 +22,6 @@ public class ShowTimeService{
 	private ShowTimeDao showtimeDao;
 
 	public Object findShowtimeByMovieAndDate(String showdate, String movieId, Integer page, Pageable pageable) {
-
 		List<ShowTimeDto> listMovieByDate = showtimeDao.findShowTimeByMovieAndDate(showdate, movieId);
 		int pageSize = 4;
 		int startItem = page * pageSize;
@@ -36,9 +36,13 @@ public class ShowTimeService{
 		}
 	}
 
-	public ShowTimeDto findById(int id) throws InvalidRequestParameterException {
-		return showtimeDao.findById(id)
-				.orElseThrow(() -> new InvalidRequestParameterException("id", RequestParameterEnum.NOT_FOUND));
+	public ShowTimeDto findById(Optional<Integer> id) throws InvalidRequestParameterException {
+		id.orElseThrow(() -> new InvalidRequestParameterException("Showtime id", RequestParameterEnum.NOTHING));
+		
+		ShowTimeDto showtime = showtimeDao.findById(id.get())
+				.orElseThrow(() -> new InvalidRequestParameterException("Showtime", RequestParameterEnum.NOT_FOUND));
+		
+		return showtime;
 	}
 
 	public List<ShowTimeDto> findAll() {
@@ -64,9 +68,14 @@ public class ShowTimeService{
 		return (showtimeDao.delete(showTime) == 1) ? RequestStatusEnum.SUCCESS : RequestStatusEnum.FAILURE;
 	}
 
-	public List<?> findByCurrentDate(String branchid) {
-		List<ShowTimeHasMovies> dto = showtimeDao.findByCurrentDate(branchid).stream()
+	public List<?> findByCurrentDate(Optional<String> branchid) throws InvalidRequestParameterException {
+		branchid.orElseThrow(() -> new InvalidRequestParameterException("Showtime branchid", RequestParameterEnum.NOTHING));
+		
+		List<ShowTimeHasMovies> dto = showtimeDao.findByCurrentDate(branchid.get()).stream()
 				.map(ShowTimeHasMovies::convert).toList();
+		
+		if (dto.isEmpty()) throw new InvalidRequestParameterException("Showtime", RequestParameterEnum.NOT_FOUND);
+			
 		return dto;
 	}
 }
