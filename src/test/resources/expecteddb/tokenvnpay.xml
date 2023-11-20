@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <TOKENVNPAY ID="1" CUSTOMERID="16" VNP_TOKEN="abcxyz123" VNP_CARD_NUMBER="12345678" />    
+    <TOKENVNPAY ID="2" CUSTOMERID="8" VNP_TOKEN="123456789" VNP_CARD_NUMBER="123456789" />    
+</dataset>
