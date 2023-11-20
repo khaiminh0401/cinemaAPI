@@ -18,6 +18,22 @@ import com.google.gson.JsonElement;
 public class GsonService {
 	private Gson gson;
 
+	public String getValueInput(String className, String methodName) {
+		FileReader fileReader;
+		String fileJson = "src/test/resources/" +
+				className.replace("class ", "").replace(".", "/") +
+				"_" + methodName + "_input.json";
+		try {
+			fileReader = new FileReader(fileJson);
+			this.gson = new Gson();
+			return gson.fromJson(fileReader, JsonElement.class).toString();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 	public String getValueExpect(String className, String methodName) {
 		FileReader fileReader;
 		String fileJson = "src/test/resources/" +
