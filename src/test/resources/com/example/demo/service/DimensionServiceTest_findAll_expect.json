@@ -1,0 +1,27 @@
+[
+    {
+        "id": 1,
+        "name": "2D",
+        "pricesurcharge": 10000.0
+    },
+    {
+        "id": 2,
+        "name": "3D",
+        "pricesurcharge": 20000.0
+    },
+    {
+        "id": 3,
+        "name": "4D",
+        "pricesurcharge": 25000.0
+    },
+    {
+        "id": 4,
+        "name": "5D",
+        "pricesurcharge": 30000.0
+    },
+    {
+        "id": 5,
+        "name": "Full HD",
+        "pricesurcharge": 10000.0
+    }
+]

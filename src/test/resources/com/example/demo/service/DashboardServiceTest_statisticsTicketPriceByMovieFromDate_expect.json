@@ -1,0 +1,26 @@
+[
+    {
+        "id": 0,
+        "month": null,
+        "color": null,
+        "totalTicket": 26,
+        "totalPrice": 2184000.0,
+        "movieName": null,
+        "year": 0,
+        "hour": 0,
+        "date": "2023-01-01",
+        "totalShowtime": 0
+    },
+    {
+        "id": 0,
+        "month": null,
+        "color": null,
+        "totalTicket": 18,
+        "totalPrice": 1512000.0,
+        "movieName": null,
+        "year": 0,
+        "hour": 0,
+        "date": "2023-02-01",
+        "totalShowtime": 0
+    }
+]
