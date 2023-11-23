@@ -14,6 +14,7 @@ import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 
 import com.example.demo.MovieApplication;
+import com.example.demo.MovieTestApplication;
 import com.example.demo.config.GsonService;
 import com.example.demo.entity.Ticket;
 import com.example.demo.exception.InvalidRequestParameterException;
@@ -24,7 +25,7 @@ import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.github.springtestdbunit.annotation.ExpectedDatabase;
 import com.github.springtestdbunit.assertion.DatabaseAssertionMode;
 
-@SpringBootTest(classes = MovieApplication.class)
+@SpringBootTest(classes = MovieTestApplication.class)
 @TestExecutionListeners({ DependencyInjectionTestExecutionListener.class, DbUnitTestExecutionListener.class })
 @AutoConfigureMockMvc
 public class TicketServiceTest {

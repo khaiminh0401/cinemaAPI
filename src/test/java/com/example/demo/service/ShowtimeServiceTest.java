@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.sql.Date;
+import java.sql.Time;
 import java.util.Optional;
 
 import org.junit.jupiter.api.Order;
@@ -15,8 +16,11 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.test.context.TestExecutionListeners;
+import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 
 import com.example.demo.MovieApplication;
+import com.example.demo.MovieTestApplication;
 import com.example.demo.admin.controller.enums.RequestParameterEnum;
 import com.example.demo.config.GsonService;
 import com.example.demo.dao.ShowTimeDao;
@@ -24,11 +28,13 @@ import com.example.demo.entity.ShowTime;
 import com.example.demo.exception.InvalidRequestParameterException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.springtestdbunit.DbUnitTestExecutionListener;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.github.springtestdbunit.annotation.ExpectedDatabase;
 import com.github.springtestdbunit.assertion.DatabaseAssertionMode;
 
-@SpringBootTest(classes = MovieApplication.class)
+@SpringBootTest(classes = MovieTestApplication.class)
+@TestExecutionListeners({ DependencyInjectionTestExecutionListener.class, DbUnitTestExecutionListener.class })
 @AutoConfigureMockMvc
 public class ShowtimeServiceTest {
 	@Autowired
@@ -45,7 +51,7 @@ public class ShowtimeServiceTest {
 	@Test
 	public void testFindShowtimeByMovieAndDate() throws JsonProcessingException {
 		String expect = gsonService.getValueExpect(this.getClass().toString(), "findShowtimeByMovieAndDate");
-		String result = objectMapper.writeValueAsString(showtimeService.findShowtimeByMovieAndDate("2023-09-17", "MP53",
+		String result = objectMapper.writeValueAsString(showtimeService.findShowtimeByMovieAndDate("09/17/2023", "MP08",
 				Integer.valueOf(0), PageRequest.of(1, 1)));
 		assertEquals(expect, result);
 	}
@@ -104,10 +110,9 @@ public class ShowtimeServiceTest {
 	@DatabaseSetup(value = "/db/ShowtimeServiceTest_testInsertShowtimeSuccess_db.xml")
 	@ExpectedDatabase(value = "/expecteddb/ShowtimeServiceTest_testInsertShowtimeSuccess_db_expect.xml", assertionMode = DatabaseAssertionMode.NON_STRICT_UNORDERED)
     @Test
-    @Order(1)
 	public void testInsertShowtimeSuccess() throws InvalidRequestParameterException {
 		showtime = new ShowTime();
-		showtime.setId(0);
+		showtime.setId(97);
 		showtime.setRoomId("PC35");
 		showtime.setDimensionId(5);
 		showtime.setPrice(50000.00000000000000000);
@@ -115,16 +120,18 @@ public class ShowtimeServiceTest {
     	showtimeService.insert(showtime);
 	}
 	
+	@SuppressWarnings("deprecation")
 	@DatabaseSetup(value = "/db/ShowtimeServiceTest_testUpdateShowtimeSuccess_db.xml")
 	@ExpectedDatabase(value = "/expecteddb/ShowtimeServiceTest_testUpdateShowtimeSuccess_db_expect.xml", assertionMode = DatabaseAssertionMode.NON_STRICT_UNORDERED)
     @Test
-    @Order(2)
 	public void testUpdateShowtimeSuccess() throws InvalidRequestParameterException {
 		showtime = new ShowTime();
 		showtime.setId(97);
 		showtime.setRoomId("PC35");
 		showtime.setDimensionId(5);
 		showtime.setPrice(70000.00000000000000000);
+		showtime.setShowDate(new Date(123, 8, 17));
+		showtime.setStartTime(Time.valueOf("16:00:00"));
 		showtime.setLanguageOfMovieId(12);
     	showtimeService.update(showtime);
 	}
@@ -132,7 +139,6 @@ public class ShowtimeServiceTest {
 	@DatabaseSetup(value = "/db/ShowtimeServiceTest_testDeleteShowtimeSuccess_db.xml")
 	@ExpectedDatabase(value = "/expecteddb/ShowtimeServiceTest_testDeleteShowtimeSuccess_db_expect.xml", assertionMode = DatabaseAssertionMode.NON_STRICT_UNORDERED)
     @Test
-    @Order(3)
 	public void testDeleteShowtimeSuccess() throws InvalidRequestParameterException {
     	showtimeService.delete(97);
 	}

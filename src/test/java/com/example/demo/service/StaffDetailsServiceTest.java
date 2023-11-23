@@ -11,14 +11,12 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-import com.example.demo.MovieApplication;
-import com.example.demo.admin.controller.enums.RequestParameterEnum;
+import com.example.demo.MovieTestApplication;
 import com.example.demo.config.GsonService;
-import com.example.demo.exception.InvalidRequestParameterException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-@SpringBootTest(classes = MovieApplication.class)
+@SpringBootTest(classes = MovieTestApplication.class)
 @AutoConfigureMockMvc
 public class StaffDetailsServiceTest {
 	@Autowired
