@@ -3,6 +3,6 @@ FROM showtime LEFT JOIN (SELECT showtimeid, COUNT(ticket.id) as sl FROM ticket g
 JOIN languageofmovie ON languageofmovie.id = showtime.languageofmovieid
 JOIN room on room.id = showtime.roomid
 WHERE showtime.showdate = CURRENT_DATE
-AND (languageofmovie.movieid = CASE WHEN /* movieId */'MP07' = '0' THEN languageofmovie.movieid ELSE /* movieId */'MP07' END)
+AND (languageofmovie.movieid = CASE WHEN /* movieId */'MP07' = '' THEN languageofmovie.movieid ELSE /* movieId */'MP07' END)
 AND (room.branchid = CASE WHEN /* branchId */'cn1' = '0' THEN room.branchid ELSE /* branchId */'cn1' END)
 ORDER BY starttime
