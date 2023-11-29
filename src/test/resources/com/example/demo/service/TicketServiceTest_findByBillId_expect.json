@@ -1,0 +1,38 @@
+[
+	{
+		"id": 2,
+		"seatDetailsId": null,
+		"showtimeId": null,
+		"totalPrice": 70000.0,
+		"createDate": "2023-11-29",
+		"vat": 0.05,
+		"billId": null,
+		"customerName": "Phạm Ngọc Khách Đoan",
+		"showdate": "2023-09-16",
+		"startTime": "16:00:00",
+		"seat": "A1",
+		"seatPrice": 10000.0,
+		"seatPriceCommon": 20000.0,
+		"seatType": "Thường",
+		"seatTypeSurchage": 0.0,
+		"movieName": "CÙ LAO XÁC SỐNG"
+	},
+	{
+		"id": 1,
+		"seatDetailsId": null,
+		"showtimeId": null,
+		"totalPrice": 70000.0,
+		"createDate": "2023-11-29",
+		"vat": 0.05,
+		"billId": null,
+		"customerName": "Phạm Ngọc Khách Đoan",
+		"showdate": "2023-09-16",
+		"startTime": "16:00:00",
+		"seat": "A1",
+		"seatPrice": 10000.0,
+		"seatPriceCommon": 20000.0,
+		"seatType": "Thường",
+		"seatTypeSurchage": 0.0,
+		"movieName": "CÙ LAO XÁC SỐNG"
+	}
+]

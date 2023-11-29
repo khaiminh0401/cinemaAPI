@@ -18,9 +18,6 @@ public interface TicketDao {
 	
 	@Select
 	List<Ticket> findAll();
-	
-	@Select
-	List<TicketDto> findByCustomerId(Integer customerId);
 
 	@Select
 	List<TicketDto> findByBillId(Integer billId);
