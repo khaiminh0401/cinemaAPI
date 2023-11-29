@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import java.security.InvalidParameterException;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 import com.example.demo.dao.StaffDao;
 import com.example.demo.entity.Staff;
 import com.example.demo.enums.Role;
+import com.example.demo.exception.InvalidRequestParameterException;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -28,6 +30,9 @@ public class StaffDetailsService implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+		if (email == null) throw new InvalidParameterException("Email is null");
+		if (email.equals("")) throw new InvalidParameterException("Email is empty");
+		
 		Optional<Staff> staff = staffDao.findByEmail(email);
 
 		if (staff.isEmpty()) {

@@ -1,4 +1,4 @@
-package com.example.demo.controller;
+package com.example.demo.controller.rest;
 
 import java.util.Optional;
 
@@ -22,13 +22,8 @@ public class TicketController {
 	@Autowired
 	TicketService ticketService;
 
-	@GetMapping("get-all")
+	@GetMapping("/get-all")
 	public ResponseEntity<?> findAll() {
 		return ResponseEntity.ok(ticketService.findAll());
-	}
-
-	@GetMapping("get-customers")
-	public ResponseEntity<?> findByCustomerId(@RequestParam Optional<Integer> customerId) throws InvalidRequestParameterException {
-		return ResponseEntity.ok(ticketService.findByCustomerId(customerId));
 	}
 }

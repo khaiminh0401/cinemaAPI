@@ -25,20 +25,23 @@ public class TicketService {
 	public Ticket findById(Optional<Integer> id) throws InvalidRequestParameterException {
 		id.orElseThrow(() ->
 				new InvalidRequestParameterException("Ticket id", RequestParameterEnum.NOTHING));
+		
+		Ticket ticket = ticketDao.findById(id.get());
+		if (ticket == null)
+			throw new InvalidRequestParameterException("Ticket", RequestParameterEnum.NOT_FOUND);
 
-		return ticketDao.findById(id.get());
-	}
-	
-	public List<TicketDto> findByCustomerId(Optional<Integer> customerId) throws InvalidRequestParameterException {	
-		customerId.orElseThrow(() -> new InvalidRequestParameterException("", RequestParameterEnum.NOTHING));
-		return ticketDao.findByCustomerId(customerId.get());
+		return ticket;
 	}
 
 	public List<TicketDto> findByBillId(Optional<Integer> billId) throws InvalidRequestParameterException {
 		if (billId.isEmpty())
 			throw new InvalidRequestParameterException("Ticket", RequestParameterEnum.NOTHING);
+		
+		List<TicketDto> tickets = ticketDao.findByBillId(billId.get());
+		if (tickets.isEmpty())
+			throw new InvalidRequestParameterException("Tickets", RequestParameterEnum.NOT_FOUND);
 
-		return ticketDao.findByBillId(billId.get());
+		return tickets;
 	}
 
 	public String insert(Optional<Ticket> ticket) throws InvalidRequestParameterException {

@@ -3,6 +3,8 @@ package com.example.demo.service;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import java.util.Optional;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -28,59 +30,59 @@ public class SeatServiceTest {
 	private ObjectMapper objectMapper;
 
 	@Test
-	public void testFindByRoomId() throws JsonProcessingException {
+	public void testFindByRoomId() throws JsonProcessingException, InvalidRequestParameterException {
 		String expect = gsonService.getValueExpect(this.getClass().toString(), "findByRoomId");
-		String result = objectMapper.writeValueAsString(seatService.findByRoomId("PC01"));
+		String result = objectMapper.writeValueAsString(seatService.findByRoomId(Optional.of("PC01")));
 		assertEquals(expect, result);
 	}
 
 	@Test
 	public void testFindByRoomIdIsNull() throws Exception {
-		assertThrows(InvalidRequestParameterException.class, () -> seatService.findByRoomId(null));
+		assertThrows(NullPointerException.class, () -> seatService.findByRoomId(null));
 	}
 
 	@Test
 	public void testFindByRoomIdIsNotPresent() throws Exception {
-		assertThrows(InvalidRequestParameterException.class, () -> seatService.findByRoomId("-PC01"));
+		assertThrows(InvalidRequestParameterException.class, () -> seatService.findByRoomId(Optional.of("-PC01")));
 	}
 
 	@Test
 	public void testFindByRoomIdIsEmpty() throws Exception {
-		assertThrows(InvalidRequestParameterException.class, () -> seatService.findByRoomId(""));
+		assertThrows(InvalidRequestParameterException.class, () -> seatService.findByRoomId(Optional.of("")));
 	}
 
 	@Test
-	public void testGetTotal() throws JsonProcessingException {
+	public void testGetTotal() throws JsonProcessingException, InvalidRequestParameterException {
 		gsonService = new GsonService();
 		String expect = gsonService.getValueExpect(this.getClass().toString(), "getTotal");
-		String result = objectMapper.writeValueAsString(seatService.getTotal(1, "A1"));
+		String result = objectMapper.writeValueAsString(seatService.getTotal(Optional.of(1), Optional.of("A1")));
 		assertEquals(expect, result);
 	}
 
 	@Test
 	public void testGetTotalIsNull() throws Exception {
-		assertThrows(InvalidRequestParameterException.class, () -> seatService.getTotal(0, null));
+		assertThrows(NullPointerException.class, () -> seatService.getTotal(Optional.of(0), null));
 	}
 
 	@Test
 	public void testGetTotalIsNotPresent() throws Exception {
-		assertThrows(InvalidRequestParameterException.class, () -> seatService.getTotal(-1, ""));
+		assertThrows(InvalidRequestParameterException.class, () -> seatService.getTotal(Optional.of(-1), Optional.of("")));
 	}
 
 	@Test
-	public void testGetSeatHasCheckTicket() throws JsonProcessingException {
+	public void testGetSeatHasCheckTicket() throws JsonProcessingException, InvalidRequestParameterException {
 		String expect = gsonService.getValueExpect(this.getClass().toString(), "getSeatHasCheckTicket");
-		String result = objectMapper.writeValueAsString(seatService.getSeatHasCheckTicket(1));
+		String result = objectMapper.writeValueAsString(seatService.getSeatHasCheckTicket(Optional.of(1)));
 		assertEquals(expect, result);
 	}
 
 	@Test
 	public void testGetSeatHasCheckTicketIsNull() throws Exception {
-		assertThrows(InvalidRequestParameterException.class, () -> seatService.getSeatHasCheckTicket(0));
+		assertThrows(NullPointerException.class, () -> seatService.getSeatHasCheckTicket(null));
 	}
 
 	@Test
 	public void testGetSeatHasCheckTicketIsNotPresent() throws Exception {
-		assertThrows(InvalidRequestParameterException.class, () -> seatService.getSeatHasCheckTicket(-1));
+		assertThrows(InvalidRequestParameterException.class, () -> seatService.getSeatHasCheckTicket(Optional.of(-1)));
 	}
 }

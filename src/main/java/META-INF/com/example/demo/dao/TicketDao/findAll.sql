@@ -1,10 +1,2 @@
-SELECT 
-	id,
-	customerid,
-	seatdetailsid,
-	showtimeid,
-	totalprice,
-	createdate,
-	vat,
-	exportStatus
+SELECT ticket.*
 FROM ticket;

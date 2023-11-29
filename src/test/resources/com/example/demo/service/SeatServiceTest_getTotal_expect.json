@@ -1,12 +1,12 @@
 {
-    "id": null,
-    "seatTypeId": 0,
-    "rowSeat": null,
-    "orderSeat": 0,
-    "priceCommon": 0.0,
-    "stt": 0,
-    "name": "A1",
-    "roomId": null,
-    "priceDetails": 0.0,
-    "total": 70000.0
+	"id": null,
+	"seatTypeId": 0,
+	"rowSeat": null,
+	"orderSeat": 0,
+	"priceCommon": 0.0,
+	"stt": 1511,
+	"name": "A1",
+	"roomId": "PC16",
+	"priceDetails": 0.0,
+	"total": 70000.0
 }
