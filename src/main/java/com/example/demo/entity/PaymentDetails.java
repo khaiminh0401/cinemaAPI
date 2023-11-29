@@ -23,7 +23,7 @@ public class PaymentDetails {
 	
 	@Column(name = "paymethodid")
 	private String payMethodId;
-	
+
 	@Column(name = "staffid")
 	private String staffId;
 	
@@ -38,4 +38,15 @@ public class PaymentDetails {
 
 	@Column
 	private double amout;
+	
+	public PaymentDetails(String payMethodId, String staffId, Integer billId, Integer status, String vnp_TransactionNo,
+			double amout) {
+		super();
+		this.payMethodId = payMethodId;
+		this.staffId = staffId;
+		this.billId = billId;
+		this.status = status;
+		this.vnp_TransactionNo = vnp_TransactionNo;
+		this.amout = amout;
+	}
 }

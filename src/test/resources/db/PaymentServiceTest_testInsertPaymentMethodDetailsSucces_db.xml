@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <PAYMENTMETHODDETAILS PAYMETHODID="PM1" STAFFID="nv01" BILLID="10" VNP_TRANSACTIONNO="[NULL]" AMOUT="10000.0" PAYSTATUS="0" ID="8"/>
+</dataset>
