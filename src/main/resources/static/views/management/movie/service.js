@@ -130,7 +130,7 @@ class MovieService {
 
 		formData.append('json', jsonBlob, 'data.json');
 		formData.append('file', file);
-
+		console.log(file);
 		try {
 			await axios.post("/api/movie/insert", formData, {
 				headers: {
@@ -139,6 +139,7 @@ class MovieService {
 				},
 			}).then((e) => {
 				if (e.data == 'SUCCESS') {
+					console.log(formData);
 					webix.message("Thêm thành công.", "success");
 					$$("Form").clear();
 					this.fillForm(data.id)

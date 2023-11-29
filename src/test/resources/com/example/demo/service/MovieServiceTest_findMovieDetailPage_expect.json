@@ -1,0 +1,67 @@
+{
+	"movieDetail": {
+		"id": "MP07",
+		"countryid": null,
+		"name": "CÙ LAO XÁC SỐNG",
+		"yearofmanufacture": 2022,
+		"poster": "MP07.png",
+		"time": 93,
+		"describe": "Phim nói về hành trình của Công - một thầy thuốc đông y cố gắng đưa cha và con gái thoát khỏi sự truy đuổi của xác sống khi đại dịch bùng nổ. Họ thất lạc nhau trên đường chạy trốn. Trong lúc tìm lại con gái, Công gặp những người bụ nạn khác giống mình. Họ cùng nhau hợp sức thành một nhóm, cố gắng vượt qua thử thách sống còn. Liệu kết quả sẽ ra sao khi đại dịch càng ngày càng lan rộng",
+		"trailer": "https://www.youtube.com/embed/fCi9o3iieJU?si=Obuz3Dg_554uQI59",
+		"status": "1",
+		"limitage": 0,
+		"language": null,
+		"type": null,
+		"actor": null,
+		"director": null,
+		"countryName": "Việt Nam",
+		"movieTypeName": "Hành động, Hoạt hình",
+		"actorsName": "Huỳnh Đông, La Thành, Lê Lộc, Ốc Thanh Vân, Trần Phong, Xuân Nghị",
+		"directorsName": "Nguyễn Thành Nam",
+		"languagesName": "Tiếng Nhật - Phụ đề tiếng Anh, Tiếng Nhật - Phụ đề tiếng Việt",
+		"movieTypeId": "LP01,LP03",
+		"rate": 4.612403100775194
+	},
+	"listTypeOfMovies": [
+		{
+			"id": "MP48",
+			"poster": "MP48.png "
+		},
+		{
+			"id": "MP29",
+			"poster": "MP29.png "
+		},
+		{
+			"id": "MP55",
+			"poster": "MP55.png"
+		},
+		{
+			"id": "MP41",
+			"poster": "MP41.png "
+		},
+		{
+			"id": "MP18",
+			"poster": "MP18.png"
+		},
+		{
+			"id": "MP19",
+			"poster": "MP19.png"
+		},
+		{
+			"id": "MP23",
+			"poster": "MP23.png "
+		},
+		{
+			"id": "MP54",
+			"poster": "MP54.png"
+		},
+		{
+			"id": "MP03",
+			"poster": "MP03.png"
+		},
+		{
+			"id": "MP10",
+			"poster": "MP10.png"
+		}
+	]
+}

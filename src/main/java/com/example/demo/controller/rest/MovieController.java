@@ -52,7 +52,7 @@ public class MovieController {
 	}
 
 	@GetMapping("/getDetail")
-	public ResponseEntity<?> findMovieDetailPage(@RequestParam("id") String movieId)
+	public ResponseEntity<?> findMovieDetailPage(@RequestParam("id") Optional<String> movieId)
 			throws InvalidRequestParameterException {
 		return ResponseEntity.ok(movieService.findMovieDetailPage(movieId));
 	}
@@ -63,7 +63,8 @@ public class MovieController {
 	}
 
 	@GetMapping("/findMovieById")
-	public ResponseEntity<?> findMovieById(@RequestParam("movieId") String movieId) {
+	public ResponseEntity<?> findMovieById(@RequestParam("movieId") String movieId)
+			throws InvalidRequestParameterException {
 		return ResponseEntity.ok(movieService.findMovieById(movieId));
 	}
 
@@ -103,7 +104,7 @@ public class MovieController {
 	}
 
 	@GetMapping(value = "/getByBill")
-	public ResponseEntity<?> getByBill(@RequestParam("id") int id) {
+	public ResponseEntity<?> getByBill(@RequestParam("id") Optional<Integer> id) throws InvalidRequestParameterException {
 		return ResponseEntity.ok(movieService.getByBill(id));
 	}
 }
