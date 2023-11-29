@@ -13,10 +13,12 @@ import com.example.demo.MovieTestApplication;
 import com.example.demo.config.GsonService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.springtestdbunit.DbUnitTestExecutionListener;
+import com.github.springtestdbunit.annotation.DatabaseSetup;
 
 @SpringBootTest(classes = MovieTestApplication.class)
 @TestExecutionListeners({ DependencyInjectionTestExecutionListener.class, DbUnitTestExecutionListener.class })
 @AutoConfigureMockMvc
+@DatabaseSetup(value = "/db/actor.xml")
 public class ActorServiceTest {
     @Autowired
     private GsonService gsonService;
@@ -26,9 +28,8 @@ public class ActorServiceTest {
 
     @Test
     public void testMethodFindAll() throws Exception {
-        ObjectMapper mapper = new ObjectMapper();
         String expect = gsonService.getValueExpect(this.getClass().toString(), "testMethodFindAll");
-        String actual = mapper.writeValueAsString(actorService.findAll());
+        String actual = gsonService.exportAndGetActual(this.getClass().toString(), "testMethodFindAll",actorService.findAll());
         assertEquals(expect, actual);
     }
 }
