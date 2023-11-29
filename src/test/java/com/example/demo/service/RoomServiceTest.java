@@ -23,23 +23,18 @@ public class RoomServiceTest {
 	@Autowired
 	private GsonService gsonService;
 
-	@Autowired
-	private ObjectMapper objectMapper;
-
 	@Test
 	public void findAll() throws Exception {
-		GsonService gsonService = new GsonService();
 		String expect = gsonService.getValueExpect(this.getClass().toString(), "findAll");
-		String result = objectMapper.writeValueAsString(roomService.findAll());
-		assertEquals(expect, result);
+		String actual = gsonService.exportAndGetActual(this.getClass().toString(), "findAll",roomService.findAll());
+		assertEquals(expect, actual);
 	}
 
 	@Test
 	public void findById() throws Exception {
-		GsonService gsonService = new GsonService();
 		String expect = gsonService.getValueExpect(this.getClass().toString(), "findById");
-		String result = objectMapper.writeValueAsString(roomService.findById("PC01"));
-		assertEquals(expect, result);
+		String actual = gsonService.exportAndGetActual(this.getClass().toString(), "findById",roomService.findById("PC01").get());
+		assertEquals(expect, actual);
 	}
 
 	@Test
@@ -64,10 +59,9 @@ public class RoomServiceTest {
 
 	@Test
 	public void getByBranch() throws Exception {
-		GsonService gsonService = new GsonService();
 		String expect = gsonService.getValueExpect(this.getClass().toString(), "getByBranch");
-		String result = objectMapper.writeValueAsString(roomService.getByBranch("cn1", "27/09/2023"));
-		assertEquals(expect, result);
+		String actual = gsonService.exportAndGetActual(this.getClass().toString(), "getByBranch",roomService.getByBranch("cn1", "27/09/2023"));
+		assertEquals(expect, actual);
 	}
 
 	@Test
