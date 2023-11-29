@@ -16,8 +16,10 @@ import com.example.demo.MovieTestApplication;
 import com.example.demo.config.GsonService;
 import com.example.demo.entity.ToppingDetails;
 import com.example.demo.exception.InvalidRequestParameterException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.springtestdbunit.DbUnitTestExecutionListener;
+import com.github.springtestdbunit.annotation.DatabaseSetup;
+import com.github.springtestdbunit.annotation.ExpectedDatabase;
+import com.github.springtestdbunit.assertion.DatabaseAssertionMode;
 
 @SpringBootTest(classes = MovieTestApplication.class)
 @TestExecutionListeners({ DependencyInjectionTestExecutionListener.class, DbUnitTestExecutionListener.class })
@@ -29,15 +31,14 @@ public class ToppingServiceTest {
     @Autowired
     ToppingService toppingService;
 
-    @Autowired
-    private ObjectMapper objectMapper;
-
     @Test
+    @DatabaseSetup(value = "/db/ToppingOfBranch.xml")
     public void findToppingOfBranchById() throws Exception {
         String expect = gsonService.getValueExpect(this.getClass().toString(),
                 Thread.currentThread().getStackTrace()[1].getMethodName());
-        String result = objectMapper.writeValueAsString(toppingService.findToppingOfBranchById(1));
-        assertEquals(expect, result);
+        String actual = gsonService.exportAndGetActual(this.getClass().toString(), "findToppingOfBranchById",
+                toppingService.findToppingOfBranchById(1));
+        assertEquals(expect, actual);
     }
 
     @Test
@@ -51,11 +52,13 @@ public class ToppingServiceTest {
     }
 
     @Test
+    @DatabaseSetup(value = "/db/ToppingDto.xml")
     public void findByBranchid() throws Exception {
         String expect = gsonService.getValueExpect(this.getClass().toString(),
                 Thread.currentThread().getStackTrace()[1].getMethodName());
-        String result = objectMapper.writeValueAsString(toppingService.findByBranchid(Optional.of("cn1")));
-        assertEquals(expect, result);
+        String actual = gsonService.exportAndGetActual(this.getClass().toString(), "findToppingOfBranchById",
+                toppingService.findByBranchid(Optional.of("cn1")));
+        assertEquals(expect, actual);
     }
 
     @Test
@@ -77,9 +80,11 @@ public class ToppingServiceTest {
     public void orderTopping() throws Exception {
         ToppingDetails toppingDetails = GsonService.toObject(gsonService.getValueInput(this.getClass().toString(),
                 Thread.currentThread().getStackTrace()[1].getMethodName()), ToppingDetails.class);
-        String expect = "RS_02";
-        String result = toppingService.orderTopping(Optional.of(toppingDetails));
-        assertEquals(expect, result);
+        String expect = gsonService.getValueExpect(this.getClass().toString(),
+                Thread.currentThread().getStackTrace()[1].getMethodName());
+        String actual = gsonService.exportAndGetActual(this.getClass().toString(), "findToppingOfBranchById",
+                toppingService.orderTopping(Optional.of(toppingDetails)));
+        assertEquals(expect, actual);
     }
 
     @Test
@@ -96,10 +101,14 @@ public class ToppingServiceTest {
     }
 
     @Test
+    @DatabaseSetup(value = "/db/ToppingOfBranch.xml")
+    @ExpectedDatabase(value = "/expecteddb/ToppingOfBranch.xml", assertionMode = DatabaseAssertionMode.NON_STRICT_UNORDERED)
     public void updateToppingOfBranchAfterOrdered() throws Exception {
-        String expect = "RS_02";
-        String result = toppingService.updateToppingOfBranchAfterOrdered(1, 1);
-        assertEquals(expect, result);
+        String expect = gsonService.getValueExpect(this.getClass().toString(),
+                Thread.currentThread().getStackTrace()[1].getMethodName());
+        String actual = gsonService.exportAndGetActual(this.getClass().toString(), "findToppingOfBranchById",
+                toppingService.updateToppingOfBranchAfterOrdered(1, 1));
+        assertEquals(expect, actual);
     }
 
     @Test

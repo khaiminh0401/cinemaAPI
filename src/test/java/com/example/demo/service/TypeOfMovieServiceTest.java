@@ -13,7 +13,6 @@ import org.springframework.test.context.support.DependencyInjectionTestExecution
 import com.example.demo.MovieTestApplication;
 import com.example.demo.config.GsonService;
 import com.example.demo.exception.InvalidRequestParameterException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.springtestdbunit.DbUnitTestExecutionListener;
 
 @SpringBootTest(classes = MovieTestApplication.class)
@@ -26,21 +25,20 @@ public class TypeOfMovieServiceTest {
     @Autowired
     TypeOfMovieService typeOfMovieService;
 
-    @Autowired
-    private ObjectMapper objectMapper;
-
     @Test
     public void findAll() throws Exception {
         String expect = gsonService.getValueExpect(this.getClass().toString(), "findAll");
-        String result = objectMapper.writeValueAsString(typeOfMovieService.findAll());
-        assertEquals(expect, result);
+        String actual = gsonService.exportAndGetActual(this.getClass().toString(), "findAll",
+                typeOfMovieService.findAll());
+        assertEquals(expect, actual);
     }
 
     @Test
     public void findById() throws Exception {
         String expect = gsonService.getValueExpect(this.getClass().toString(), "findById");
-        String result = objectMapper.writeValueAsString(typeOfMovieService.findById("LP01"));
-        assertEquals(expect, result);
+        String actual = gsonService.exportAndGetActual(this.getClass().toString(), "findById",
+                typeOfMovieService.findById("LP01"));
+        assertEquals(expect, actual);
     }
 
     @Test

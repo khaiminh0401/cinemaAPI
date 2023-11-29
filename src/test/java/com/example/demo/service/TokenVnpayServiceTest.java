@@ -16,7 +16,6 @@ import com.example.demo.MovieTestApplication;
 import com.example.demo.config.GsonService;
 import com.example.demo.entity.TokenVnpay;
 import com.example.demo.exception.InvalidRequestParameterException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.springtestdbunit.DbUnitTestExecutionListener;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.github.springtestdbunit.annotation.ExpectedDatabase;
@@ -32,18 +31,19 @@ public class TokenVnpayServiceTest {
     @Autowired
     TokenVnpayService tokenVnpayService;
 
-    @Autowired
-    private ObjectMapper objectMapper;
-
     @Test
     @DatabaseSetup(value = "/db/tokenvnpay.xml")
     @ExpectedDatabase(value = "/expecteddb/tokenvnpay.xml", assertionMode = DatabaseAssertionMode.NON_STRICT_UNORDERED)
     public void insert() throws Exception {
-        TokenVnpay tokenVnpay = GsonService.toObject(gsonService.getValueInput(this.getClass().toString(), Thread.currentThread().getStackTrace()[1].getMethodName()),
+        TokenVnpay tokenVnpay = GsonService.toObject(
+                gsonService.getValueInput(this.getClass().toString(),
+                        Thread.currentThread().getStackTrace()[1].getMethodName()),
                 TokenVnpay.class);
-        String result = tokenVnpayService.insert(Optional.of(tokenVnpay));
-        String expect = "RS_02";
-        assertEquals(result, expect);
+        String expect = gsonService.getValueExpect(this.getClass().toString(),
+                Thread.currentThread().getStackTrace()[1].getMethodName());
+        String actual = gsonService.exportAndGetActual(this.getClass().toString(), "insert",
+                tokenVnpayService.insert(Optional.of(tokenVnpay)));
+        assertEquals(expect, actual);
     }
 
     @Test
@@ -61,11 +61,13 @@ public class TokenVnpayServiceTest {
     }
 
     @Test
+    @DatabaseSetup(value = "/db/tokenvnpay.xml")
     public void findByCustomerId() throws Exception {
         String expect = gsonService.getValueExpect(this.getClass().toString(),
                 Thread.currentThread().getStackTrace()[1].getMethodName());
-        String result = objectMapper.writeValueAsString(tokenVnpayService.findByCustomerId(Optional.of(1)));
-        assertEquals(expect, result);
+        String actual = gsonService.exportAndGetActual(this.getClass().toString(), "findByCustomerId",
+                tokenVnpayService.findByCustomerId(Optional.of(16)));
+        assertEquals(expect, actual);
     }
 
     @Test
