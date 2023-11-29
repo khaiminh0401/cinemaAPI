@@ -64,9 +64,9 @@ public class PaymentServiceTest {
 	@Order(3)
 	public void findByTransactionNo() throws InvalidRequestParameterException, JsonProcessingException {
 		String expect = gsonService.getValueExpect(this.getClass().toString(), "findByTransactionNo");
-		PaymentDetails data = (paymentService.findByTransactionNo(Optional.of("12345")));
-		String result = objectMapper.writeValueAsString(data);
-		assertEquals(expect, result);
+		String actual = gsonService.exportAndGetActual(this.getClass().toString(), "findByTransactionNo",
+				paymentService.findByTransactionNo(Optional.of("12345")));
+		assertEquals(expect, actual);
 	}
 
 }
