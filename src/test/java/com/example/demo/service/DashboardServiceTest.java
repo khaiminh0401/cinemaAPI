@@ -26,20 +26,24 @@ public class DashboardServiceTest {
 	@Autowired
 	private ObjectMapper objectMapper;
 
-    @Test
-    public void testFindTotalPriceTicketPerMonthOfYear() throws Exception {
-        String expect = gsonService.getValueExpect(this.getClass().toString(), "findTotalPriceTicketPerMonthOfYear");
-        String result = objectMapper.writeValueAsString(dashboardService.findTotalPriceTicketPerMonthOfYear(2023,"Bình Tân"));
-        assertEquals(expect, result);
-    }
+	@Test
+	public void testFindTotalPriceTicketPerMonthOfYear() throws Exception {
 
-    @Test
-    public void testStatisticsTicketPriceByMovie() throws Exception {
-        String expect = gsonService.getValueExpect(this.getClass().toString(), "statisticsTicketPriceByMovie");
-        String result = objectMapper.writeValueAsString(dashboardService.statisticsTicketPriceByMovie("Hưng Thịnh"));
-        assertEquals(expect,result);
-    }
-    
+		String expect = gsonService.getValueExpect(this.getClass().toString(), "findTotalPriceTicketPerMonthOfYear");
+		String actual = gsonService.exportAndGetActual(this.getClass().toString(), "findTotalPriceTicketPerMonthOfYear",
+				dashboardService.findTotalPriceTicketPerMonthOfYear(2023, "cn2"));
+		assertEquals(expect, actual);
+
+	}
+
+	@Test
+	public void testStatisticsTicketPriceByMovie() throws Exception {
+		String expect = gsonService.getValueExpect(this.getClass().toString(), "statisticsTicketPriceByMovie");
+		String actual = gsonService.exportAndGetActual(this.getClass().toString(), "statisticsTicketPriceByMovie",
+				dashboardService.statisticsTicketPriceByMovie("cn2"));
+		assertEquals(expect, actual);
+	}
+
 	@Test
 	public void testStatisticsTicketPriceByMovieIsNotFound() throws InvalidRequestParameterException {
 		assertThrows(InvalidRequestParameterException.class, () -> dashboardService.statisticsTicketPriceByMovie("Hưng Thịnh 2"));
@@ -49,8 +53,8 @@ public class DashboardServiceTest {
     @Test
     public void testStatisticsTicketPriceByMovieDetail() throws Exception {
         String expect = gsonService.getValueExpect(this.getClass().toString(), "statisticsTicketPriceByMovie2");
-        String result = objectMapper.writeValueAsString(dashboardService.statisticsTicketPriceByMovie2("NGƯỢC DÒNG THỜI GIAN ĐỂ YÊU ANH",2023,"Hưng Thịnh"));
-        assertEquals(expect,result);
+        String actual = gsonService.exportAndGetActual(this.getClass().toString(), "statisticsTicketPriceByMovie2",dashboardService.statisticsTicketPriceByMovie2("MP07",2023,"cn2"));
+        assertEquals(expect,actual);
     }
     
     @Test
@@ -61,15 +65,15 @@ public class DashboardServiceTest {
     @Test
     public void testFillYear() throws Exception {
         String expect = gsonService.getValueExpect(this.getClass().toString(), "fillYear");
-        String result = objectMapper.writeValueAsString(dashboardService.fillYear());
-        assertEquals(expect,result);
+        String actual = gsonService.exportAndGetActual(this.getClass().toString(), "fillYear",dashboardService.fillYear());
+        assertEquals(expect,actual);
     }
     
     @Test
     public void testStatisticsTicketPriceByMovieForDay() throws Exception {
         String expect = gsonService.getValueExpect(this.getClass().toString(), "statisticsTicketPriceByMovieForDay");
-        String result = objectMapper.writeValueAsString(dashboardService.statisticsTicketPriceByMovieForDay("BỘ TỨ DỊ GIỚI: THẾ GIỚI SONG SONG","2023-11-01","cn2"));
-        assertEquals(expect,result);
+        String actual = gsonService.exportAndGetActual(this.getClass().toString(), "statisticsTicketPriceByMovieForDay",dashboardService.statisticsTicketPriceByMovieForDay("","2023-11-01","cn2"));
+        assertEquals(expect,actual);
     }
     
 	@Test
@@ -80,8 +84,8 @@ public class DashboardServiceTest {
     @Test
     public void testStatisticsTicketPriceByMovieFromDate() throws Exception {
         String expect = gsonService.getValueExpect(this.getClass().toString(), "statisticsTicketPriceByMovieFromDate");
-        String result = objectMapper.writeValueAsString(dashboardService.statisticsTicketPriceByMovieFromDate("","2023-01-01","2023-02-01","cn2"));
-        assertEquals(expect,result);
+        String actual = gsonService.exportAndGetActual(this.getClass().toString(), "statisticsTicketPriceByMovieFromDate",dashboardService.statisticsTicketPriceByMovieFromDate("","2023-11-01","2023-11-02","cn2"));
+        assertEquals(expect,actual);
     }
     
 	@Test
@@ -92,8 +96,9 @@ public class DashboardServiceTest {
     @Test
     public void testMovieOfBranch() throws Exception {
         String expect = gsonService.getValueExpect(this.getClass().toString(), "movieOfBranch");
-        String result = objectMapper.writeValueAsString(dashboardService.MovieOfBranch("cn2"));
-        assertEquals(expect,result);
+        String actual = gsonService.exportAndGetActual(this.getClass().toString(), "movieOfBranch",dashboardService.MovieOfBranch("cn1"));
+        System.out.println(actual);
+        assertEquals(expect,actual);
     }
     
 	@Test
@@ -104,8 +109,8 @@ public class DashboardServiceTest {
     @Test
     public void testStatisticsTotalShowtimeOfYear() throws Exception {
         String expect = gsonService.getValueExpect(this.getClass().toString(), "statisticsTotalShowtimeOfYear");
-        String result = objectMapper.writeValueAsString(dashboardService.statisticsTotalShowtimeOfYear(2023,"cn2"));
-        assertEquals(expect,result);
+        String actual = gsonService.exportAndGetActual(this.getClass().toString(), "statisticsTotalShowtimeOfYear",dashboardService.statisticsTotalShowtimeOfYear(2023,"cn2"));
+        assertEquals(expect,actual);
     }
 
 }

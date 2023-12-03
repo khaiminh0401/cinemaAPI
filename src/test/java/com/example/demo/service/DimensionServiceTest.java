@@ -31,15 +31,16 @@ public class DimensionServiceTest {
     @Test
     public void testFindAll() throws JsonProcessingException {
         String expect = gsonService.getValueExpect(this.getClass().toString(), "findAll");
-        String result = objectMapper.writeValueAsString(dimensionService.findAll());
-        assertEquals(expect, result);
+        String actual = gsonService.exportAndGetActual(this.getClass().toString(), "findAll",dimensionService.findAll());
+        assertEquals(expect, actual);
     }
     
     @Test
     public void testFindById() throws Exception {
         String expect = gsonService.getValueExpect(this.getClass().toString(), "findById");
-        String result = objectMapper.writeValueAsString(dimensionService.findById(1));
-        assertEquals(expect,result);
+        String actual = gsonService.exportAndGetActual(this.getClass().toString(), "findById",dimensionService.findById(1).get());
+        System.out.println(actual);
+        assertEquals(expect,actual);
     }
     
     @Test

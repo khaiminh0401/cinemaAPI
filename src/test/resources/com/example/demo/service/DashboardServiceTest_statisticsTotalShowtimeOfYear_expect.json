@@ -9,7 +9,8 @@
         "year": 0,
         "hour": 0,
         "date": null,
-        "totalShowtime": 7
+        "totalShowtime": 7,
+        "movieId": null
     },
     {
         "id": 2,
@@ -21,7 +22,8 @@
         "year": 0,
         "hour": 0,
         "date": null,
-        "totalShowtime": 6
+        "totalShowtime": 6,
+        "movieId": null
     },
     {
         "id": 3,
@@ -33,7 +35,8 @@
         "year": 0,
         "hour": 0,
         "date": null,
-        "totalShowtime": 8
+        "totalShowtime": 8,
+        "movieId": null
     },
     {
         "id": 4,
@@ -45,7 +48,8 @@
         "year": 0,
         "hour": 0,
         "date": null,
-        "totalShowtime": 7
+        "totalShowtime": 7,
+        "movieId": null
     },
     {
         "id": 5,
@@ -57,7 +61,8 @@
         "year": 0,
         "hour": 0,
         "date": null,
-        "totalShowtime": 7
+        "totalShowtime": 7,
+        "movieId": null
     },
     {
         "id": 6,
@@ -69,7 +74,8 @@
         "year": 0,
         "hour": 0,
         "date": null,
-        "totalShowtime": 7
+        "totalShowtime": 7,
+        "movieId": null
     },
     {
         "id": 7,
@@ -81,7 +87,8 @@
         "year": 0,
         "hour": 0,
         "date": null,
-        "totalShowtime": 7
+        "totalShowtime": 7,
+        "movieId": null
     },
     {
         "id": 8,
@@ -93,7 +100,8 @@
         "year": 0,
         "hour": 0,
         "date": null,
-        "totalShowtime": 0
+        "totalShowtime": 0,
+        "movieId": null
     },
     {
         "id": 9,
@@ -105,7 +113,8 @@
         "year": 0,
         "hour": 0,
         "date": null,
-        "totalShowtime": 88
+        "totalShowtime": 88,
+        "movieId": null
     },
     {
         "id": 10,
@@ -117,7 +126,8 @@
         "year": 0,
         "hour": 0,
         "date": null,
-        "totalShowtime": 6
+        "totalShowtime": 6,
+        "movieId": null
     },
     {
         "id": 11,
@@ -129,7 +139,8 @@
         "year": 0,
         "hour": 0,
         "date": null,
-        "totalShowtime": 6
+        "totalShowtime": 6,
+        "movieId": null
     },
     {
         "id": 12,
@@ -141,6 +152,7 @@
         "year": 0,
         "hour": 0,
         "date": null,
-        "totalShowtime": 0
+        "totalShowtime": 0,
+        "movieId": null
     }
 ]

@@ -5,71 +5,12 @@
         "color": null,
         "totalTicket": 0,
         "totalPrice": 0.0,
-        "movieName": "ÁC QUỶ MA SƠ II",
+        "movieName": "NGƯỢC DÒNG THỜI GIAN ĐỂ YÊU ANH",
         "year": 0,
         "hour": 0,
         "date": null,
-        "totalShowtime": 0
-    },
-    {
-        "id": 0,
-        "month": null,
-        "color": null,
-        "totalTicket": 0,
-        "totalPrice": 0.0,
-        "movieName": "BỘ TỨ DỊ GIỚI: THẾ GIỚI SONG SONG",
-        "year": 0,
-        "hour": 0,
-        "date": null,
-        "totalShowtime": 0
-    },
-    {
-        "id": 0,
-        "month": null,
-        "color": null,
-        "totalTicket": 0,
-        "totalPrice": 0.0,
-        "movieName": "CÙ LAO XÁC SỐNG",
-        "year": 0,
-        "hour": 0,
-        "date": null,
-        "totalShowtime": 0
-    },
-    {
-        "id": 0,
-        "month": null,
-        "color": null,
-        "totalTicket": 0,
-        "totalPrice": 0.0,
-        "movieName": "GRAN TURISMO: TAY ĐUA CỰ PHÁCH",
-        "year": 0,
-        "hour": 0,
-        "date": null,
-        "totalShowtime": 0
-    },
-    {
-        "id": 0,
-        "month": null,
-        "color": null,
-        "totalTicket": 0,
-        "totalPrice": 0.0,
-        "movieName": "HẠ CÁNH KHẨN CẤP",
-        "year": 0,
-        "hour": 0,
-        "date": null,
-        "totalShowtime": 0
-    },
-    {
-        "id": 0,
-        "month": null,
-        "color": null,
-        "totalTicket": 0,
-        "totalPrice": 0.0,
-        "movieName": "KISAGARI: NHÀ GA NUỐT CHỬNG",
-        "year": 0,
-        "hour": 0,
-        "date": null,
-        "totalShowtime": 0
+        "totalShowtime": 0,
+        "movieId": "MP02"
     },
     {
         "id": 0,
@@ -81,7 +22,8 @@
         "year": 0,
         "hour": 0,
         "date": null,
-        "totalShowtime": 0
+        "totalShowtime": 0,
+        "movieId": "MP05"
     },
     {
         "id": 0,
@@ -89,11 +31,12 @@
         "color": null,
         "totalTicket": 0,
         "totalPrice": 0.0,
-        "movieName": "NGƯỢC DÒNG THỜI GIAN ĐỂ YÊU ANH",
+        "movieName": "CÙ LAO XÁC SỐNG",
         "year": 0,
         "hour": 0,
         "date": null,
-        "totalShowtime": 0
+        "totalShowtime": 0,
+        "movieId": "MP07"
     },
     {
         "id": 0,
@@ -101,11 +44,12 @@
         "color": null,
         "totalTicket": 0,
         "totalPrice": 0.0,
-        "movieName": "QUÁI VẬT SÔNG MEKONG",
+        "movieName": "ÁC QUỶ MA SƠ II",
         "year": 0,
         "hour": 0,
         "date": null,
-        "totalShowtime": 0
+        "totalShowtime": 0,
+        "movieId": "MP12"
     },
     {
         "id": 0,
@@ -113,10 +57,11 @@
         "color": null,
         "totalTicket": 0,
         "totalPrice": 0.0,
-        "movieName": "TRUY SÁT TẬN CUNG",
+        "movieName": "ĐỊA ĐÀNG SỤP ĐỔ",
         "year": 0,
         "hour": 0,
         "date": null,
-        "totalShowtime": 0
+        "totalShowtime": 0,
+        "movieId": "MP51"
     }
 ]

@@ -22,14 +22,11 @@ public class LanguageServiceTest {
 	@Autowired
 	private LanguageService languageService;
 
-	@Autowired
-	private ObjectMapper objectMapper;
-
     @Test
     public void testFindAll() throws JsonProcessingException {
         String expect = gsonService.getValueExpect(this.getClass().toString(), "findAll");
-        String result = objectMapper.writeValueAsString(languageService.findAll());
-        assertEquals(expect, result);
+        String actual = gsonService.exportAndGetActual(this.getClass().toString(), "findAll",languageService.findAll());
+        assertEquals(expect, actual);
     }
     
 }

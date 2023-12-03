@@ -1,26 +1,15 @@
 [
-    {
-        "id": 0,
-        "month": null,
-        "color": null,
-        "totalTicket": 20,
-        "totalPrice": 1662000.0,
-        "movieName": "CÙ LAO XÁC SỐNG",
-        "year": 2023,
-        "hour": 0,
-        "date": null,
-        "totalShowtime": 0
-    },
-    {
-        "id": 0,
-        "month": null,
-        "color": null,
-        "totalTicket": 8,
-        "totalPrice": 672000.0,
-        "movieName": "NGƯỢC DÒNG THỜI GIAN ĐỂ YÊU ANH",
-        "year": 2023,
-        "hour": 0,
-        "date": null,
-        "totalShowtime": 0
-    }
+	{
+		"id": 0,
+		"month": null,
+		"color": null,
+		"totalTicket": 2,
+		"totalPrice": 140000.0,
+		"movieName": "CÙ LAO XÁC SỐNG",
+		"year": 2023,
+		"hour": 0,
+		"date": null,
+		"totalShowtime": 0,
+		"movieId": null
+	}
 ]

@@ -1,7 +1,5 @@
-
-	{
-		"id" : 1,
-		"name" : "2D",
-		"pricesurcharge" : 10000.0
-	}
-
+{
+    "id": 1,
+    "name": "2D",
+    "pricesurcharge": 10000.0
+}

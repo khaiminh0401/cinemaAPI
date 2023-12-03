@@ -30,18 +30,17 @@ public class LanguageOfMovieServiceTest {
     @Test
     public void testFindAll() throws JsonProcessingException {
         String expect = gsonService.getValueExpect(this.getClass().toString(), "findAll");
-        String result = objectMapper.writeValueAsString(languageOfMovieService.findAll());
-        assertEquals(expect, result);
+        String actual = gsonService.exportAndGetActual(this.getClass().toString(), "findAll",languageOfMovieService.findAll());
+        assertEquals(expect, actual);
     }
     
     @Test
     public void testFindByMovieId() throws Exception {
         String expect = gsonService.getValueExpect(this.getClass().toString(), "findByMovieId");
-        String result = objectMapper.writeValueAsString(languageOfMovieService.findByMovieId("MP01"));
-        assertEquals(expect, result);
+        String actual = gsonService.exportAndGetActual(this.getClass().toString(), "findByMovieId",languageOfMovieService.findByMovieId("MP01"));
+        assertEquals(expect, actual);
     }
     
-
 	@Test
 	public void testFindByMovieIdIsNotFound() throws Exception {
 		assertThrows(InvalidRequestParameterException.class, () -> languageOfMovieService.findByMovieId("MP00"));

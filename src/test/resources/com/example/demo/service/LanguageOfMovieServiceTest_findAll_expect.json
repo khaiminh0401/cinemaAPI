@@ -502,5 +502,19 @@
         "languageId": 3,
         "movieName": "QUÁI VẬT SÔNG MEKONG",
         "languageName": "Lồng tiếng"
+    },
+    {
+        "id": 124,
+        "movieId": "MP56",
+        "languageId": 8,
+        "movieName": "Alibaba",
+        "languageName": "Tiếng Indonesia - Phụ đề tiếng Việt"
+    },
+    {
+        "id": 125,
+        "movieId": "MP56",
+        "languageId": 16,
+        "movieName": "Alibaba",
+        "languageName": "Tiếng Anh và tiếng Ý - Phụ đề tiếng Việt"
     }
 ]
